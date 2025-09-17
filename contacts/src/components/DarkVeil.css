@@ -1,0 +1,60 @@
+/* cards-stage zaten: position:relative; height:600px; (responsive yükseklikler var) */
+
+/* DarkVeil katmanı: tam-bleed, “arka” */
+.dv-bg {
+  position: absolute;
+  inset: -8% -10%; /* kenarlardan biraz taşır, zoom etkisi */
+  z-index: 0;
+  pointer-events: none; /* tıklamayı engellemesin */
+  opacity: 0.9; /* istersen .7-.95 arası oynat */
+  filter: saturate(1.05); /* sıcak tonları hafif artır */
+}
+
+/* kenarları koyulaştıran vignette (isteğe bağlı) */
+.dv-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 90% at 65% 55%,
+    transparent 0%,
+    rgba(0, 0, 0, 0.15) 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+/* CardSwap üstte kalsın */
+.cards-stage .card-swap-container {
+  z-index: 1;
+}
+
+.section-dark.portfolio-showcase {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🔥 Sadece bu kalsın */
+.section-dark.portfolio-showcase .dv-bg {
+  position: absolute;
+  inset: 0 !important; /* tüm section'ı tamamen kapla */
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Canvas %100 doldursun */
+.section-dark.portfolio-showcase .dv-bg .darkveil-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* İçerik üstte kalsın */
+.section-dark.portfolio-showcase .portfolio-inner {
+  position: relative;
+  z-index: 4;
+}

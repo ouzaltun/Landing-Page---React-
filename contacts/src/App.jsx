@@ -1,14 +1,14 @@
 import "./App.css";
 import HeroSlider from "./components/HeroSlider";
 import ServicesGrid from "./components/ServicesGrid";
+import PortfolioSection from "./components/PortfolioSection";
 
-function App() {
+export default function App() {
   return (
     <>
       <HeroSlider />
       <ServicesGrid />
+      <PortfolioSection />
     </>
   );
 }
-
-export default App;
