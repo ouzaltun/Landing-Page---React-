@@ -72,7 +72,7 @@ export default function PortfolioSection() {
                 thickness={2}
                 aria-label="Hikayelerimizi izleyin"
               >
-                Hikayelerimizi izleyin
+                Hikayelerimizi İzleyin
               </StarBorder>
 
               <a href="#contact" className="btn btn-primary">
