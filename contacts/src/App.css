@@ -208,7 +208,7 @@ body {
 }
 /* Bölüm: hero ile çakışmasın, ferah boşluk */
 .section-dark {
-  background: #0b0b0b;
+  background: #000;
   border-top: 1px solid #171717;
   padding-block: clamp(36px, 6vw, 80px);
 }
@@ -340,7 +340,7 @@ body {
 
 /* --- Showcase: sol metin + sağda kart yığını --- */
 .portfolio-showcase {
-  padding-block: clamp(40px, 7vw, 120px);
+  padding-block: clamp(20px, 4vw, 60px);
 }
 .showcase-grid {
   display: grid;
@@ -467,4 +467,26 @@ body {
   .cards-stage {
     height: 340px;
   }
+}
+.portfolio-title-wrap {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px !important;
+  text-align: center;
+}
+
+.portfolio-title {
+  color: #ff5e2e;
+  font-weight: 400;
+  line-height: 1.05;
+  font-size: clamp(48px, 12vw, 140px);
+  letter-spacing: 10px;
+}
+
+.split-parent .split-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+.liquid-ether-container canvas {
+  background-color: #000 !important;
 }
