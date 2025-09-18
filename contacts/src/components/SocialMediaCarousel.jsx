@@ -224,9 +224,9 @@ const SocialMediaCarousel = ({
       {/* Header - Sol üst köşede */}
 
       <div className="absolute mt-20 z-10 section-container showcase-grid ozi-showcase flex justify-center align-middle self-center-safe">
-        <h1 className="text-white text-l md:text-l font-bold sm:text-m leading-tight whitespace-pre-line">
+        <div className="text-white text-[32px] md:text-[42px] font-bold  leading-tight whitespace-pre-line">
           Kurumsal <br></br>Tanıtım Filmleri
-        </h1>
+        </div>
       </div>
 
       {/* Carousel Container - Ekranın ortasında */}
