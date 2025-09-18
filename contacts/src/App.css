@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 .liquid-ether-container {
   position: relative;
   overflow: hidden;
@@ -340,7 +342,7 @@ body {
 
 /* --- Showcase: sol metin + sağda kart yığını --- */
 .portfolio-showcase {
-  padding-block: clamp(20px, 4vw, 60px);
+  padding-block: clamp(30px, 4vw, 60px);
 }
 .showcase-grid {
   display: grid;
@@ -471,8 +473,10 @@ body {
 .portfolio-title-wrap {
   width: 100%;
   margin: 0 auto;
-  padding: 0px !important;
+  padding: 0px;
   text-align: center;
+  background-color: #000 !important;
+  padding-bottom: 60px;
 }
 
 .portfolio-title {
@@ -489,4 +493,119 @@ body {
 }
 .liquid-ether-container canvas {
   background-color: #000 !important;
+}
+/* --- HERO / SINGLE SLIDE --- */
+.hero-wrap {
+  position: relative;
+  min-height: 100svh; /* tam ekran */
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2; /* arka plan en altta */
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 120% at 50% 40%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.18) 50%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+.hero-inner {
+  width: min(100%, 1100px);
+  padding: 4rem 1.25rem 3rem;
+  text-align: center;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-size: clamp(32px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.2px;
+  text-wrap: balance;
+  margin: 0.25rem auto 0.75rem;
+  max-width: 18ch;
+}
+
+.hero-sub {
+  max-width: 70ch;
+  margin: 0 auto 1.75rem;
+  font-size: clamp(14px, 2.2vw, 18px);
+  opacity: 0.92;
+}
+
+.cta-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-primary {
+  background: #fff;
+  color: #111;
+  border-color: transparent;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e9e9e9;
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Küçük ekran iyileştirmeleri */
+@media (max-width: 480px) {
+  .hero-inner {
+    padding-top: 3rem;
+    padding-bottom: 2.5rem;
+  }
+  .cta-row {
+    gap: 0.75rem;
+  }
+}
+.showcase-grid {
+  justify-self: anchor-center;
 }
