@@ -223,8 +223,8 @@ const SocialMediaCarousel = ({
     <div className="w-full min-h-screen bg-black overflow-hidden relative">
       {/* Header - Sol üst köşede */}
 
-      <div className="absolute top-36 left-12 z-10 section-container showcase-grid ozi-showcase flex justify-center align-middle self-center-safe">
-        <h1 className="text-white text-l md:text-l font-bold leading-tight whitespace-pre-line">
+      <div className="absolute mt-20 z-10 section-container showcase-grid ozi-showcase flex justify-center align-middle self-center-safe">
+        <h1 className="text-white text-l md:text-l font-bold sm:text-m leading-tight whitespace-pre-line">
           Kurumsal <br></br>Tanıtım Filmleri
         </h1>
       </div>
