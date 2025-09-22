@@ -5,6 +5,8 @@ import PortfolioSection from "./components/PortfolioSection";
 import SplitText from "./components/SplitText";
 import Divider from "./components/Divider";
 import SocialMediaCarousel from "./components/SocialMediaCarousel";
+import ProductionProcess from "./components/ProductionProcess";
+import Testimonials from "./components/Testimonials";
 
 import imgPwc from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/pwc.jpg";
 import imgAkbank from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/akbank.jpg";
@@ -105,8 +107,9 @@ export default function App() {
         items={items}
         initialIndex={0}
         loop={true}
-        onChange={(index) => console.log("Aktif slayt:", index)}
         headerTitle="Kurumsal Tanıtım Filmleri"
+        autoplay={true}
+        autoplayInterval={2000}
       />
       <Divider className="my-10" />
       <SocialMediaCarousel
@@ -114,6 +117,8 @@ export default function App() {
         initialIndex={0}
         loop={true}
         headerTitle="Influencer Çalışmaları"
+        autoplay={true}
+        autoplayInterval={3000}
       />
       <Divider className="my-10" />
       <SocialMediaCarousel
@@ -121,7 +126,11 @@ export default function App() {
         initialIndex={0}
         loop={true}
         headerTitle="Etkinlik Çekimleri"
+        autoplay={true}
+        autoplayInterval={4000}
       />
+      <Testimonials />
+      <ProductionProcess />
     </>
   );
 }

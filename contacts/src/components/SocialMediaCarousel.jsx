@@ -9,27 +9,17 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
  * @param {Array} items - Array of carousel items with structure: { image: string, yearInfo: string, title: string }
  * @param {number} initialIndex - Starting slide index (default: 0)
  * @param {boolean} loop - Enable infinite loop (default: true)
+ * @param {boolean} autoplay - Enable automatic sliding (default: false)
+ * @param {number} autoplayInterval - Interval for autoplay in ms (default: 4000)
  * @param {function} onChange - Callback function when slide changes
  * @param {string} headerTitle - Main title text (default: "Kurumsal\nTanıtım Filmleri")
- *
- * @example
- * const items = [
- *   { image: "https://example.com/image1.jpg", yearInfo: "2024, Teknoloji", title: "Proje Adı 1" },
- *   { image: "https://example.com/image2.jpg", yearInfo: "2024, Tasarım", title: "Proje Adı 2" }
- * ];
- *
- * <SocialMediaCarousel
- *   items={items}
- *   initialIndex={0}
- *   loop={true}
- *   onChange={(index) => console.log('Active slide:', index)}
- *   headerTitle="Kurumsal Tanıtım Filmleri"
- * />
  */
 const SocialMediaCarousel = ({
   items = [],
   initialIndex = 0,
   loop = true,
+  autoplay = false,
+  autoplayInterval = 4000,
   onChange,
   headerTitle = "Kurumsal Tanıtım Filmleri",
 }) => {
@@ -39,22 +29,7 @@ const SocialMediaCarousel = ({
   const [dragOffset, setDragOffset] = useState(0);
   const carouselRef = useRef(null);
   const trackRef = useRef(null);
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        goToPrevious();
-      } else if (e.key === "ArrowRight") {
-        e.preventDefault();
-        goToNext();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentIndex, items.length, loop]);
+  const autoplayRef = useRef(null); // Autoplay interval'ını tutmak için ref
 
   const goToNext = useCallback(() => {
     if (loop) {
@@ -72,19 +47,57 @@ const SocialMediaCarousel = ({
     }
   }, [currentIndex, items.length, loop]);
 
-  const goToSlide = (index) => {
-    setCurrentIndex(index);
+  const startAutoplay = useCallback(() => {
+    if (!autoplay || isDragging) return;
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+    }
+    autoplayRef.current = setInterval(() => {
+      goToNext();
+    }, autoplayInterval);
+  }, [autoplay, autoplayInterval, goToNext, isDragging]);
+
+  const stopAutoplay = () => {
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+    }
   };
 
-  // Notify parent of index change
+  useEffect(() => {
+    startAutoplay();
+    return () => stopAutoplay();
+  }, [startAutoplay]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goToPrevious();
+        stopAutoplay();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goToNext();
+        stopAutoplay();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [goToPrevious, goToNext]);
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+    stopAutoplay();
+  };
+
   useEffect(() => {
     if (onChange) {
       onChange(currentIndex);
     }
   }, [currentIndex, onChange]);
 
-  // Mouse drag handlers
   const handleMouseDown = (e) => {
+    stopAutoplay();
     setIsDragging(true);
     setDragStart(e.clientX);
     setDragOffset(0);
@@ -93,7 +106,6 @@ const SocialMediaCarousel = ({
   const handleMouseMove = useCallback(
     (e) => {
       if (!isDragging) return;
-
       const offset = e.clientX - dragStart;
       setDragOffset(offset);
     },
@@ -112,10 +124,11 @@ const SocialMediaCarousel = ({
 
     setIsDragging(false);
     setDragOffset(0);
-  }, [isDragging, dragOffset, goToNext, goToPrevious]);
+    startAutoplay();
+  }, [isDragging, dragOffset, goToNext, goToPrevious, startAutoplay]);
 
-  // Touch handlers
   const handleTouchStart = (e) => {
+    stopAutoplay();
     setIsDragging(true);
     setDragStart(e.touches[0].clientX);
     setDragOffset(0);
@@ -124,7 +137,6 @@ const SocialMediaCarousel = ({
   const handleTouchMove = useCallback(
     (e) => {
       if (!isDragging) return;
-
       const offset = e.touches[0].clientX - dragStart;
       setDragOffset(offset);
     },
@@ -143,9 +155,9 @@ const SocialMediaCarousel = ({
 
     setIsDragging(false);
     setDragOffset(0);
-  }, [isDragging, dragOffset, goToNext, goToPrevious]);
+    startAutoplay();
+  }, [isDragging, dragOffset, goToNext, goToPrevious, startAutoplay]);
 
-  // Add global mouse event listeners
   useEffect(() => {
     if (isDragging) {
       document.addEventListener("mousemove", handleMouseMove);
@@ -168,25 +180,21 @@ const SocialMediaCarousel = ({
     let blur = 0;
 
     if (distance === 0) {
-      // Active card
       scale = 1;
       opacity = 1;
       zIndex = 20;
       rotateY = 0;
     } else if (distance === 1) {
-      // Adjacent cards
       scale = 0.85;
       opacity = 0.7;
       zIndex = 15;
       rotateY = direction > 0 ? 8 : -8;
     } else if (distance === 2) {
-      // Second level cards
       scale = 0.7;
       opacity = 0.5;
       zIndex = 10;
       rotateY = direction > 0 ? 15 : -15;
     } else {
-      // Far cards
       scale = 0.6;
       opacity = 0.3;
       zIndex = 5;
@@ -220,24 +228,27 @@ const SocialMediaCarousel = ({
   }
 
   return (
-    <div className="w-full min-h-screen bg-black overflow-hidden relative">
-      {/* Header - Sol üst köşede */}
-
+    <div
+      className="w-full min-h-screen bg-black overflow-hidden relative"
+      onMouseEnter={stopAutoplay}
+      onMouseLeave={startAutoplay}
+    >
       <div className="absolute mt-20 z-10 section-container showcase-grid ozi-showcase flex justify-center align-middle self-center-safe">
         <div className="text-white text-[32px] md:text-[42px] font-bold leading-tight whitespace-pre-line">
           {headerTitle}
         </div>
       </div>
 
-      {/* Carousel Container - Ekranın ortasında */}
       <div
         ref={carouselRef}
         className="relative w-full h-screen flex items-center justify-center"
         style={{ perspective: "1200px" }}
       >
-        {/* Navigation Buttons */}
         <button
-          onClick={goToPrevious}
+          onClick={() => {
+            goToPrevious();
+            stopAutoplay();
+          }}
           disabled={!loop && currentIndex === 0}
           aria-label="Önceki slayt"
           className="absolute left-8 z-30 p-2 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white/30"
@@ -246,7 +257,10 @@ const SocialMediaCarousel = ({
         </button>
 
         <button
-          onClick={goToNext}
+          onClick={() => {
+            goToNext();
+            stopAutoplay();
+          }}
           disabled={!loop && currentIndex === items.length - 1}
           aria-label="Sonraki slayt"
           className="absolute right-8 z-30 p-2 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white/30"
@@ -254,7 +268,6 @@ const SocialMediaCarousel = ({
           <ChevronRight size={20} />
         </button>
 
-        {/* Cards Track */}
         <div
           ref={trackRef}
           className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
@@ -271,7 +284,6 @@ const SocialMediaCarousel = ({
               onClick={() => goToSlide(index)}
             >
               <div className="w-72 h-96 md:w-80 md:h-[420px] bg-gray-900 rounded-2xl overflow-hidden shadow-2xl cursor-pointer hover:shadow-3xl transition-shadow duration-300 relative">
-                {/* Image */}
                 <div className="w-full h-full overflow-hidden relative">
                   <img
                     src={item.image}
@@ -279,11 +291,7 @@ const SocialMediaCarousel = ({
                     className="w-full h-full object-cover"
                     draggable={false}
                   />
-
-                  {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-
-                  {/* Content overlay */}
                   <div className="absolute bottom-0 left-0 p-6 text-left">
                     <p className="text-gray-300 text-sm mb-1 font-medium">
                       {item.yearInfo}
@@ -298,7 +306,6 @@ const SocialMediaCarousel = ({
           ))}
         </div>
 
-        {/* Dots Indicator */}
         <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-3">
           {items.map((_, index) => (
             <button
