@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 // Resim importları
 import alperImage from "../assets/Produksiyon/Müşteri Yorumları/alper burak uslu.jpg";
 import elvanImage from "../assets/Produksiyon/Müşteri Yorumları/elvan bayraktar.jpg";
-import kemalImage from "../assets/Produksiyon/Müşteri Yorumları/kemal başar.jpg";
+import kemalImage from "../assets/Produksiyon/Müşteri Yorumları/kemalbasar.jpg";
 import merveImage from "../assets/Produksiyon/Müşteri Yorumları/merve yıldırım.jpg";
-import utkuImage from "../assets/Produksiyon/Müşteri Yorumları/utku erdem özer.jpg";
+import utkuImage from "../assets/Produksiyon/Müşteri Yorumları/utkuerdemozer.jpg";
 
 // Yorum verileri
 const testimonialsData = [
