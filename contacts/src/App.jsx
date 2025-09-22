@@ -14,12 +14,12 @@ import imgHalkbank from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-c
 import imgNow from "../src//assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/now.jpg";
 
 import imgDerya from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/derya.jpg";
-import imgGururAydogan from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/gurur aydoğan.jpg";
+import imgGururAydogan from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/gururaydogan.jpg";
 import imgMuslera from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/muslera.jpg";
 import imgYilmazVural from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/yılmaz vural.jpg";
 
 import imgDichento from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/dichento.jpg";
-import imgFahriGunes from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/fahri güneş.jpg";
+import imgFahriGunes from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/fahrigunes.jpg";
 import imgHyatt from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/hyatt.jpg";
 import imgSafaManav from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/safa manav.jpg";
 
