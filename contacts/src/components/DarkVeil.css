@@ -32,7 +32,12 @@
 .section-dark.portfolio-showcase {
   position: relative;
   overflow: hidden;
-  padding: 15px 28px;
+}
+
+@media (max-width: 480px) {
+  .section-dark.portfolio-showcase {
+    padding: 15px 28px;
+  }
 }
 
 /* 🔥 Sadece bu kalsın */
