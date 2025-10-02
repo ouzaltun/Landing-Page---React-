@@ -431,6 +431,7 @@ body {
   text-align: left;
   justify-items: start; /* grid içi sola hizala */
   z-index: 99;
+  padding: 0px 16px;
 }
 
 .portfolio-showcase .copy-title {
@@ -477,6 +478,9 @@ body {
 @media (max-width: 640px) {
   .cards-stage {
     height: 340px;
+  }
+  .portfolio-title-wrap {
+    padding-bottom: 0px !important;
   }
 }
 .portfolio-title-wrap {

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import StarBorder from "./StarBorder"; // 1. StarBorder bileşenini import ettim
 
 /**
  * SocialMediaCarousel Component
@@ -23,6 +24,7 @@ const SocialMediaCarousel = ({
   onChange,
   headerTitle = "Kurumsal Tanıtım Filmleri",
 }) => {
+  // ... (Diğer kodlar ve fonksiyonlar burada aynı kalıyor)
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
@@ -30,8 +32,6 @@ const SocialMediaCarousel = ({
   const carouselRef = useRef(null);
   const trackRef = useRef(null);
   const autoplayRef = useRef(null);
-
-  // DÜZELTİLMİŞ ID OLUŞTURMA FONKSİYONU
   const createIdFromString = (text) => {
     const turkishMap = {
       ç: "c",
@@ -47,25 +47,17 @@ const SocialMediaCarousel = ({
       ü: "u",
       Ü: "U",
     };
-
     let str = text.toString();
-
-    // 1. Önce Türkçe karakterleri dönüştür
     for (let key in turkishMap) {
       str = str.replace(new RegExp(key, "g"), turkishMap[key]);
     }
-
-    // 2. Sonra diğer işlemleri yap (küçük harf, tire vb.)
     return str
       .toLowerCase()
       .replace(/\n/g, " ")
       .replace(/\s+/g, "-")
       .replace(/[^\w\-]+/g, "");
   };
-
-  // Generate the unique ID from the headerTitle prop
   const headerId = createIdFromString(headerTitle);
-
   const goToNext = useCallback(() => {
     if (loop) {
       setCurrentIndex((prev) => (prev + 1) % items.length);
@@ -73,7 +65,6 @@ const SocialMediaCarousel = ({
       setCurrentIndex(currentIndex + 1);
     }
   }, [currentIndex, items.length, loop]);
-
   const goToPrevious = useCallback(() => {
     if (loop) {
       setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
@@ -81,7 +72,6 @@ const SocialMediaCarousel = ({
       setCurrentIndex(currentIndex - 1);
     }
   }, [currentIndex, items.length, loop]);
-
   const startAutoplay = useCallback(() => {
     if (!autoplay || isDragging) return;
     if (autoplayRef.current) {
@@ -91,18 +81,15 @@ const SocialMediaCarousel = ({
       goToNext();
     }, autoplayInterval);
   }, [autoplay, autoplayInterval, goToNext, isDragging]);
-
   const stopAutoplay = () => {
     if (autoplayRef.current) {
       clearInterval(autoplayRef.current);
     }
   };
-
   useEffect(() => {
     startAutoplay();
     return () => stopAutoplay();
   }, [startAutoplay]);
-
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "ArrowLeft") {
@@ -115,29 +102,24 @@ const SocialMediaCarousel = ({
         stopAutoplay();
       }
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [goToPrevious, goToNext]);
-
   const goToSlide = (index) => {
     setCurrentIndex(index);
     stopAutoplay();
   };
-
   useEffect(() => {
     if (onChange) {
       onChange(currentIndex);
     }
   }, [currentIndex, onChange]);
-
   const handleMouseDown = (e) => {
     stopAutoplay();
     setIsDragging(true);
     setDragStart(e.clientX);
     setDragOffset(0);
   };
-
   const handleMouseMove = useCallback(
     (e) => {
       if (!isDragging) return;
@@ -146,29 +128,24 @@ const SocialMediaCarousel = ({
     },
     [isDragging, dragStart]
   );
-
   const handleMouseUp = useCallback(() => {
     if (!isDragging) return;
-
     const threshold = 100;
     if (dragOffset > threshold) {
       goToPrevious();
     } else if (dragOffset < -threshold) {
       goToNext();
     }
-
     setIsDragging(false);
     setDragOffset(0);
     startAutoplay();
   }, [isDragging, dragOffset, goToNext, goToPrevious, startAutoplay]);
-
   const handleTouchStart = (e) => {
     stopAutoplay();
     setIsDragging(true);
     setDragStart(e.touches[0].clientX);
     setDragOffset(0);
   };
-
   const handleTouchMove = useCallback(
     (e) => {
       if (!isDragging) return;
@@ -177,22 +154,18 @@ const SocialMediaCarousel = ({
     },
     [isDragging, dragStart]
   );
-
   const handleTouchEnd = useCallback(() => {
     if (!isDragging) return;
-
     const threshold = 100;
     if (dragOffset > threshold) {
       goToPrevious();
     } else if (dragOffset < -threshold) {
       goToNext();
     }
-
     setIsDragging(false);
     setDragOffset(0);
     startAutoplay();
   }, [isDragging, dragOffset, goToNext, goToPrevious, startAutoplay]);
-
   useEffect(() => {
     if (isDragging) {
       document.addEventListener("mousemove", handleMouseMove);
@@ -203,17 +176,14 @@ const SocialMediaCarousel = ({
       };
     }
   }, [isDragging, handleMouseMove, handleMouseUp]);
-
   const getCardStyle = (index) => {
     const distance = Math.abs(index - currentIndex);
     const direction = index - currentIndex;
-
-    let scale = 1;
-    let opacity = 1;
-    let zIndex = 10;
-    let rotateY = 0;
-    let blur = 0;
-
+    let scale = 1,
+      opacity = 1,
+      zIndex = 10,
+      rotateY = 0,
+      blur = 0;
     if (distance === 0) {
       scale = 1;
       opacity = 1;
@@ -236,10 +206,8 @@ const SocialMediaCarousel = ({
       rotateY = direction > 0 ? 20 : -20;
       blur = 1;
     }
-
     const baseTranslateX = (index - currentIndex) * 220;
     const dragTranslateX = isDragging ? dragOffset : 0;
-
     return {
       transform: `translateX(${
         baseTranslateX + dragTranslateX
@@ -268,12 +236,30 @@ const SocialMediaCarousel = ({
       onMouseEnter={stopAutoplay}
       onMouseLeave={startAutoplay}
     >
-      <div className="absolute mt-20 z-10 section-container showcase-grid ozi-showcase flex justify-center align-middle self-center-safe">
-        <div
-          id={headerId}
-          className="text-white text-[32px] md:text-[42px] font-bold leading-tight whitespace-pre-line"
-        >
-          {headerTitle}
+      {/* 2. BAŞLIK VE BUTON İÇİN DÜZENLEME */}
+      <div className="absolute mt-20 z-10 w-full px-4">
+        <div className="section-container flex items-center justify-center md:justify-between gap-4">
+          {/* Başlık */}
+          <div
+            id={headerId}
+            className="text-white text-center md:text-left text-[32px] md:text-[42px] font-bold leading-tight whitespace-pre-line"
+          >
+            {headerTitle}
+          </div>
+
+          {/* Yeni Buton */}
+          <div className="shrink-0">
+            <StarBorder
+              as="a" // Butonun bir link olmasını sağlar
+              href="#iletisim" // TODO: Burayı iletişim sayfanızın linki ile güncelleyin
+              color="#FF5E2E"
+              speed="5s"
+              thickness={2}
+              aria-label="İletişime geçin"
+            >
+              İletişime Geç
+            </StarBorder>
+          </div>
         </div>
       </div>
 

@@ -22,19 +22,21 @@ export default function PortfolioSection() {
   return (
     <>
       <>
-        <section className="section-dark portfolio-intro" id="portfolio">
-          <div className="section-container">
-            <h2 className="portfolio-kicker">Portfolyoyu incele</h2>
-            <a
-              className="down-badge"
-              href="#brand-showcase"
-              onClick={jumpToShowcase}
-              aria-label="Aşağı kaydır"
-            >
-              <span className="chev">⌄</span>
-            </a>
-          </div>
-        </section>
+        {/*
+  <section className="section-dark portfolio-intro" id="portfolio">
+    <div className="section-container">
+      <h2 className="portfolio-kicker">Portfolyoyu incele</h2>
+      <a
+        className="down-badge"
+        href="#brand-showcase"
+        onClick={jumpToShowcase}
+        aria-label="Aşağı kaydır"
+      >
+        <span className="chev">⌄</span>
+      </a>
+    </div>
+  </section>
+*/}
         {/* ... */}
       </>
 
