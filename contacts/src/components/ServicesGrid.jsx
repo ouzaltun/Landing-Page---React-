@@ -10,22 +10,22 @@ const cards = [
   {
     title: "Kurumsal Tanıtım Filmleri",
     image: imgKurumsal,
-    href: "#kurumsal-tanitim-filmleri",
+    href: "#brand-showcase",
   },
   {
     title: "Sosyal Medya İçerikleri",
     image: imgSosyal,
-    href: "#sosyal-medya-icerikleri",
+    href: "#brand-showcase",
   },
   {
     title: "Influencer İşbirlikleri",
     image: imgInfluencer,
-    href: "#influencer-isbirlikleri",
+    href: "#brand-showcase",
   },
   {
     title: "Etkinlik Çekimleri",
     image: imgEtkinlik,
-    href: "#etkinlik-cekimleri",
+    href: "#brand-showcase",
   },
 ];
 

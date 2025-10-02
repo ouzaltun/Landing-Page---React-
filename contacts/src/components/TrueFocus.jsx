@@ -13,8 +13,14 @@ export default function TrueFocus({
   className = "",
 }) {
   const words = sentence.split(" ");
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const leftIndex = 0;
+  const rightIndex = Math.max(0, words.length - 1);
+
+  // Sıra: sağ -> sol -> ikisi
+  const steps = ["right", "left", "both"];
+  const [stepIndex, setStepIndex] = useState(0);
   const [lastActiveIndex, setLastActiveIndex] = useState(null);
+
   const containerRef = useRef(null);
   const wordRefs = useRef([]);
   const [focusRect, setFocusRect] = useState({
@@ -24,42 +30,115 @@ export default function TrueFocus({
     height: 0,
   });
 
+  // Otomatik animasyon döngüsü
   useEffect(() => {
     if (!manualMode) {
       const t = setInterval(
-        () => setCurrentIndex((p) => (p + 1) % words.length),
+        () => setStepIndex((p) => (p + 1) % steps.length),
         (animationDuration + pauseBetweenAnimations) * 1000
       );
       return () => clearInterval(t);
     }
-  }, [manualMode, animationDuration, pauseBetweenAnimations, words.length]);
+  }, [manualMode, animationDuration, pauseBetweenAnimations]);
 
+  // Mevcut adımın hangi index(ler)i aktif ettiğini hesapla
+  const activeIndices = (() => {
+    const step = steps[stepIndex];
+    if (manualMode) return []; // manual modda hover belirler
+    if (step === "right") return [rightIndex];
+    if (step === "left") return [leftIndex];
+    return [leftIndex, rightIndex]; // both
+  })();
+
+  // Çerçeve konumu — tek kelime veya iki kelimeyi kapsayacak şekilde
   useEffect(() => {
-    if (!wordRefs.current[currentIndex] || !containerRef.current) return;
-    const parent = containerRef.current.getBoundingClientRect();
-    const rect = wordRefs.current[currentIndex].getBoundingClientRect();
-    setFocusRect({
-      x: rect.left - parent.left,
-      y: rect.top - parent.top,
-      width: rect.width,
-      height: rect.height,
-    });
-  }, [currentIndex, words.length]);
+    if (!containerRef.current) return;
 
+    const parent = containerRef.current.getBoundingClientRect();
+
+    const rectForIndex = (i) => {
+      const el = wordRefs.current[i];
+      if (!el) return null;
+      return el.getBoundingClientRect();
+    };
+
+    let rect = null;
+
+    if (manualMode) {
+      // manual modda bir önceki aktif index'i esas al (hover ile set ediliyor)
+      if (lastActiveIndex != null) {
+        const r = rectForIndex(lastActiveIndex);
+        if (r) {
+          rect = {
+            x: r.left - parent.left,
+            y: r.top - parent.top,
+            width: r.width,
+            height: r.height,
+          };
+        }
+      }
+    } else {
+      if (activeIndices.length === 1) {
+        const r = rectForIndex(activeIndices[0]);
+        if (r) {
+          rect = {
+            x: r.left - parent.left,
+            y: r.top - parent.top,
+            width: r.width,
+            height: r.height,
+          };
+        }
+      } else if (activeIndices.length > 1) {
+        // "both": iki ucu kapsayan birleştirilmiş dikdörtgen
+        const rects = activeIndices
+          .map(rectForIndex)
+          .filter(Boolean)
+          .sort((a, b) => a.left - b.left);
+
+        if (rects.length) {
+          const left = rects[0].left;
+          const right = rects[rects.length - 1].right;
+          const top = Math.min(...rects.map((r) => r.top));
+          const bottom = Math.max(...rects.map((r) => r.bottom));
+          rect = {
+            x: left - parent.left,
+            y: top - parent.top,
+            width: right - left,
+            height: bottom - top,
+          };
+        }
+      }
+    }
+
+    if (rect) setFocusRect(rect);
+  }, [
+    stepIndex,
+    activeIndices.join(","),
+    manualMode,
+    lastActiveIndex,
+    words.length,
+  ]);
+
+  // Hover davranışı (manualMode true iken)
   const onEnter = (i) => {
     if (!manualMode) return;
     setLastActiveIndex(i);
-    setCurrentIndex(i);
   };
   const onLeave = () => {
     if (!manualMode) return;
-    setCurrentIndex(lastActiveIndex);
+    // hover kalkınca son index'i koruyoruz; istersen null yapıp çerçeveyi gizleyebilirsin
+  };
+
+  // Bir kelime aktif mi?
+  const isWordActive = (i) => {
+    if (manualMode) return i === lastActiveIndex;
+    return activeIndices.includes(i);
   };
 
   return (
     <div className={`focus-container ${className}`} ref={containerRef}>
       {words.map((w, i) => {
-        const active = i === currentIndex;
+        const active = isWordActive(i);
         return (
           <span
             key={i}
@@ -88,7 +167,7 @@ export default function TrueFocus({
           y: focusRect.y,
           width: focusRect.width,
           height: focusRect.height,
-          opacity: currentIndex >= 0 ? 1 : 0,
+          opacity: manualMode && lastActiveIndex == null ? 0 : 1,
         }}
         transition={{ duration: animationDuration }}
         style={{ "--border-color": borderColor, "--glow-color": glowColor }}
