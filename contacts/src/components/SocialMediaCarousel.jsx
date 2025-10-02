@@ -29,7 +29,42 @@ const SocialMediaCarousel = ({
   const [dragOffset, setDragOffset] = useState(0);
   const carouselRef = useRef(null);
   const trackRef = useRef(null);
-  const autoplayRef = useRef(null); // Autoplay interval'ını tutmak için ref
+  const autoplayRef = useRef(null);
+
+  // DÜZELTİLMİŞ ID OLUŞTURMA FONKSİYONU
+  const createIdFromString = (text) => {
+    const turkishMap = {
+      ç: "c",
+      Ç: "C",
+      ğ: "g",
+      Ğ: "G",
+      ı: "i",
+      İ: "I",
+      ö: "o",
+      Ö: "O",
+      ş: "s",
+      Ş: "S",
+      ü: "u",
+      Ü: "U",
+    };
+
+    let str = text.toString();
+
+    // 1. Önce Türkçe karakterleri dönüştür
+    for (let key in turkishMap) {
+      str = str.replace(new RegExp(key, "g"), turkishMap[key]);
+    }
+
+    // 2. Sonra diğer işlemleri yap (küçük harf, tire vb.)
+    return str
+      .toLowerCase()
+      .replace(/\n/g, " ")
+      .replace(/\s+/g, "-")
+      .replace(/[^\w\-]+/g, "");
+  };
+
+  // Generate the unique ID from the headerTitle prop
+  const headerId = createIdFromString(headerTitle);
 
   const goToNext = useCallback(() => {
     if (loop) {
@@ -234,7 +269,10 @@ const SocialMediaCarousel = ({
       onMouseLeave={startAutoplay}
     >
       <div className="absolute mt-20 z-10 section-container showcase-grid ozi-showcase flex justify-center align-middle self-center-safe">
-        <div className="text-white text-[32px] md:text-[42px] font-bold leading-tight whitespace-pre-line">
+        <div
+          id={headerId}
+          className="text-white text-[32px] md:text-[42px] font-bold leading-tight whitespace-pre-line"
+        >
           {headerTitle}
         </div>
       </div>

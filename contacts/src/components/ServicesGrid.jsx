@@ -10,25 +10,24 @@ const cards = [
   {
     title: "Kurumsal Tanıtım Filmleri",
     image: imgKurumsal,
-    href: "#brand-showcase",
+    href: "#kurumsal-tanitim-filmleri",
   },
   {
     title: "Sosyal Medya İçerikleri",
     image: imgSosyal,
-    href: "#brand-showcase",
+    href: "#sosyal-medya-icerikleri",
   },
   {
     title: "Influencer İşbirlikleri",
     image: imgInfluencer,
-    href: "#brand-showcase",
+    href: "#influencer-calismalari",
   },
   {
     title: "Etkinlik Çekimleri",
     image: imgEtkinlik,
-    href: "#brand-showcase",
+    href: "#etkinlik-cekimleri",
   },
 ];
-
 export default function ServicesGrid() {
   return (
     <section className="section-dark">

@@ -86,7 +86,7 @@ export default function App() {
     <>
       <HeroSlider />
       <ServicesGrid />
-      <PortfolioSection />
+
       <div className="portfolio-title-wrap">
         <SplitText
           tag="h1"
@@ -111,7 +111,16 @@ export default function App() {
         autoplay={true}
         autoplayInterval={2000}
       />
-      <Divider className="my-10" />
+      <Divider className="my-4" />
+      <SocialMediaCarousel
+        items={items3}
+        initialIndex={0}
+        loop={true}
+        headerTitle="Sosyal Medya İçerikleri"
+        autoplay={true}
+        autoplayInterval={5000}
+      />
+      <Divider className="my-4" />
       <SocialMediaCarousel
         items={items2}
         initialIndex={0}
@@ -120,7 +129,7 @@ export default function App() {
         autoplay={true}
         autoplayInterval={3000}
       />
-      <Divider className="my-10" />
+      <Divider className="my-4" />
       <SocialMediaCarousel
         items={items3}
         initialIndex={0}
@@ -129,6 +138,7 @@ export default function App() {
         autoplay={true}
         autoplayInterval={4000}
       />
+      <PortfolioSection />
       <Testimonials />
       <ProductionProcess />
     </>
