@@ -640,11 +640,13 @@ body {
 
 .close-btn {
   position: absolute;
-  top: 8px;
+  top: -49px;
   right: 8px;
   background: transparent;
   border: none;
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
+  display: flex;
+  float: right;
 }
