@@ -242,7 +242,7 @@ const SocialMediaCarousel = ({
           {/* Başlık */}
           <div
             id={headerId}
-            className="text-white text-center md:text-left text-[32px] md:text-[42px] font-bold leading-tight whitespace-pre-line"
+            className="text-white text-center md:text-left text-[28px] md:text-[42px] font-bold leading-tight whitespace-pre-line"
           >
             {headerTitle}
           </div>
