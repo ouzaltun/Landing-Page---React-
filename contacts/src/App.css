@@ -19,7 +19,7 @@ body {
 /* --- HERO / SINGLE SLIDE --- */
 .hero-wrap {
   position: relative;
-  min-height: 100svh; /* tam ekran */
+  min-height: 85svh !important; /* tam ekran */
   width: 100%;
   overflow: hidden;
   isolation: isolate;
@@ -613,4 +613,38 @@ body {
 }
 .showcase-grid {
   justify-self: anchor-center;
+}
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.video-content {
+  position: relative;
+  background: #000;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.video-content iframe {
+  display: block;
+  max-width: 90vw;
+  max-height: 80vh;
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
 }

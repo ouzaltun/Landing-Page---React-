@@ -1,9 +1,11 @@
-// src/components/HeroSlider.jsx
+import { useState } from "react";
 import LiquidEther from "./LiquidEther";
 import TrueFocus from "./TrueFocus";
 import StarBorder from "./StarBorder";
 
 export default function HeroSlider() {
+  const [showVideo, setShowVideo] = useState(false); // 🔥 modal kontrolü
+
   return (
     <section className="hero-wrap">
       <div className="hero-bg">
@@ -28,7 +30,7 @@ export default function HeroSlider() {
       </div>
 
       <div className="hero-inner">
-        <span className="pill">Markanız için</span>
+        {/* <span className="pill">Markanız için</span> */}
 
         <TrueFocus
           sentence="Dijital Odak"
@@ -48,9 +50,9 @@ export default function HeroSlider() {
 
         <div className="cta-row">
           <StarBorder
-            as="a"
-            href="#stories"
-            color="#FF5E2E" // neon turuncu (outline ile uyumlu)
+            as="button"
+            onClick={() => setShowVideo(true)} // 👈 tıklayınca popup aç
+            color="#FF5E2E"
             speed="5s"
             thickness={2}
             aria-label="Hikayelerimizi izleyin"
@@ -63,6 +65,26 @@ export default function HeroSlider() {
           </a>
         </div>
       </div>
+
+      {/* 🎬 Pop-up Video Modal */}
+      {showVideo && (
+        <div className="video-modal" onClick={() => setShowVideo(false)}>
+          <div className="video-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-btn" onClick={() => setShowVideo(false)}>
+              ✕
+            </button>
+            <iframe
+              width="800"
+              height="450"
+              src="https://www.youtube.com/embed/nw9tGjxdoSw?autoplay=1"
+              title="Showreel"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
