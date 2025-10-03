@@ -60,7 +60,7 @@ export default function HeroSlider() {
             Hikayelerimizi izleyin
           </StarBorder>
 
-          <a href="#contact" className="btn btn-primary">
+          <a href="#iletisim" className="btn btn-primary">
             Projenizi Konuşalım
           </a>
         </div>

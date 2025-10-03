@@ -1,6 +1,7 @@
 import CardSwap, { Card } from "./CardSwap";
 import StarBorder from "./StarBorder";
 import DarkVeil from "./DarkVeil";
+import { useState } from "react";
 
 // 🔧 Görselleri ASCII isimlerle kullan (öneri klasör):
 // assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/
@@ -10,6 +11,8 @@ import imgHalkbank from "../assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekim
 import imgNow from "../assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/now.jpg";
 
 export default function PortfolioSection() {
+  const [showVideo, setShowVideo] = useState(false);
+
   const jumpToShowcase = (e) => {
     e.preventDefault();
     const el = document.getElementById("brand-showcase");
@@ -67,8 +70,8 @@ export default function PortfolioSection() {
             {/* YALNIZCA bu bölüm için sola yaslı CTA */}
             <div className="cta-row portfolio-cta">
               <StarBorder
-                as="a"
-                href="#stories"
+                as="button"
+                onClick={() => setShowVideo(true)}
                 color="#FF5E2E"
                 speed="5s"
                 thickness={2}
@@ -77,7 +80,7 @@ export default function PortfolioSection() {
                 Hikayelerimizi İzleyin
               </StarBorder>
 
-              <a href="#contact" className="btn btn-primary">
+              <a href="#iletisim" className="btn btn-primary">
                 İletişime Geçin
               </a>
             </div>
@@ -111,6 +114,23 @@ export default function PortfolioSection() {
           </div>
         </div>
       </section>
+      {showVideo && (
+        <div className="video-modal" onClick={() => setShowVideo(false)}>
+          <div className="video-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-btn" onClick={() => setShowVideo(false)}>
+              ✕
+            </button>
+            <iframe
+              width="800"
+              height="450"
+              src="https://www.youtube.com/embed/nw9tGjxdoSw?autoplay=1"
+              title="Showreel"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
     </>
   );
 }
