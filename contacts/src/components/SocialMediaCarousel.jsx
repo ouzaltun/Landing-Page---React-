@@ -348,7 +348,7 @@ const SocialMediaCarousel = ({
           <div className="relative w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
             <button
               onClick={closeVideo}
-              className="absolute z-10 top-[-20px] right-3 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white"
+              className="absolute z-10 top-[20px] right-3 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white"
             >
               <X size={24} />
             </button>
