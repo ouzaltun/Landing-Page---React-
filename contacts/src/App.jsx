@@ -36,21 +36,25 @@ export default function App() {
       image: imgDichento,
       yearInfo: "2024 • Tanıtım Filmi",
       title: "Dichento",
+      videoUrl: "https://www.youtube.com/watch?v=jqF2LZi2uGA",
     },
     {
       image: imgFahriGunes,
       yearInfo: "2023 • Kurumsal Video",
       title: "Fahri Güneş",
+      videoUrl: "https://www.youtube.com/watch?v=Ja-Y6VAZv44",
     },
     {
       image: imgHyatt,
       yearInfo: "2024 • Otel Tanıtımı",
       title: "Hyatt Regency",
+      videoUrl: "https://www.youtube.com/watch?v=MctJYo1SGH0",
     },
     {
       image: imgSafaManav,
       yearInfo: "2023 • Marka Filmi",
       title: "Safa Manav",
+      videoUrl: "https://www.youtube.com/watch?v=EOB-NHk6JQ0",
     },
   ];
 

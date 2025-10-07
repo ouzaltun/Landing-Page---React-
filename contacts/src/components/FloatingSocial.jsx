@@ -25,7 +25,7 @@ export default function FloatingSocial({
             height={72}
             borderRadius={999}
             backgroundOpacity={0.1}
-            brightness={80}
+            brightness={0}
             opacity={0.1}
             blur={14}
             displace={6}
