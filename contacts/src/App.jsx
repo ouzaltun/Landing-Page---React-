@@ -144,8 +144,6 @@ export default function App() {
       <ProductionProcess />
 
       <FloatingSocial
-        instagramUrl="https://instagram.com/markaniz"
-        whatsappUrl="https://wa.me/905555555555"
         showLabels={false} // masaüstünde sadece ikon isterseniz
         accent="#FF5E2E" // markanızın turuncusu
       />
