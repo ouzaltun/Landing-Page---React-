@@ -7,6 +7,7 @@ import Divider from "./components/Divider";
 import SocialMediaCarousel from "./components/SocialMediaCarousel";
 import ProductionProcess from "./components/ProductionProcess";
 import Testimonials from "./components/Testimonials";
+import FloatingSocial from "./components/FloatingSocial";
 
 import imgPwc from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/pwc.jpg";
 import imgAkbank from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/akbank.jpg";
@@ -141,6 +142,13 @@ export default function App() {
       <PortfolioSection />
       <Testimonials />
       <ProductionProcess />
+
+      <FloatingSocial
+        instagramUrl="https://instagram.com/markaniz"
+        whatsappUrl="https://wa.me/905555555555"
+        showLabels={false} // masaüstünde sadece ikon isterseniz
+        accent="#FF5E2E" // markanızın turuncusu
+      />
     </>
   );
 }
