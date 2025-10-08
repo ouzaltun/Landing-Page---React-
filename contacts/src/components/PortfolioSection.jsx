@@ -80,7 +80,10 @@ export default function PortfolioSection() {
                 Hikayelerimizi İzleyin
               </StarBorder>
 
-              <a href="#iletisim" className="btn btn-primary">
+              <a
+                href="https://wa.me/905377245929?text=Merhabalar%2C%20cekim.dijitalodak.com%20sitenizden%20ula%C5%9F%C4%B1yorum.%20%C5%9Eu%20konuda%20bilgi%20almak%20istiyorum%3A"
+                className="btn btn-primary"
+              >
                 İletişime Geçin
               </a>
             </div>

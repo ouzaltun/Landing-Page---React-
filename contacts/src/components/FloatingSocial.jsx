@@ -12,7 +12,7 @@ const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
 
 export default function FloatingSocial({
   instagramUrl = "https://instagram.com/dijitalodak",
-  whatsappUrl = "https://wa.me/905377245929",
+  whatsappUrl = "https://wa.me/905377245929?text=Merhabalar%2C%20cekim.dijitalodak.com%20sitenizden%20ula%C5%9F%C4%B1yorum.%20%C5%9Eu%20konuda%20bilgi%20almak%20istiyorum%3A",
 }) {
   return (
     <>

@@ -222,7 +222,7 @@ const SocialMediaCarousel = ({
           <div className="shrink-0">
             <StarBorder
               as="a"
-              href="#iletisim"
+              href="https://wa.me/905377245929?text=Merhabalar%2C%20cekim.dijitalodak.com%20sitenizden%20ula%C5%9F%C4%B1yorum.%20%C5%9Eu%20konuda%20bilgi%20almak%20istiyorum%3A"
               color="#FF5E2E"
               speed="5s"
               thickness={2}
