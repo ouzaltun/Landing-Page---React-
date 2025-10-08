@@ -659,3 +659,10 @@ body {
   display: flex;
   float: right;
 }
+.liquid-ether-background {
+  /* VEYA .animation-container, hangisiyse */
+
+  /* Bu kural, dikey kaydırmaya tarayıcının müdahale etmesine izin verir. */
+  /* Yatay dokunma hareketleri ise animasyonun JavaScript'i tarafından yönetilmeye devam eder. */
+  touch-action: pan-y;
+}
