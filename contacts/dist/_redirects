@@ -1,8 +1,1 @@
-# /index.html linklerine tıklanırsa köke yönlendir
-/index.html    /    301!
-
-# HTTP'yi HTTPS'ye zorla (opsiyonel ama önerilir)
-http://cekim.dijitalodak.com/*   https://cekim.dijitalodak.com/:splat   301!
-
-# React Router için tüm yolları index.html'e ver
-/*    /index.html    200
+/*    /index.html   200
