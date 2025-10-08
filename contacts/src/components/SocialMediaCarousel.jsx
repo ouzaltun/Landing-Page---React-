@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import StarBorder from "./StarBorder";
+import YouTube from "react-youtube";
 
 const SocialMediaCarousel = ({
   items = [],
@@ -352,14 +353,20 @@ const SocialMediaCarousel = ({
             >
               <X size={24} />
             </button>
-            <iframe
-              src={`${activeVideo.replace("watch?v=", "embed/")}?autoplay=1`}
-              title="Video"
+            {/* === ESKİ IFRAME YERİNE YENİ YOUTUBE COMPONENTİ === */}
+            <YouTube
+              videoId={new URL(activeVideo).searchParams.get("v")} // URL'den video ID'sini alır
+              opts={{
+                height: "100%",
+                width: "100%",
+                playerVars: {
+                  autoplay: 1, // Otomatik oynatmayı burada belirtiyoruz
+                },
+              }}
               className="w-full h-full"
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            ></iframe>
+              iframeClassName="w-full h-full"
+            />
+            {/* ================================================= */}
           </div>
         </div>
       )}
