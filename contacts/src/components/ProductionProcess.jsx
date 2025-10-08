@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-// Veri yapısı aynı kalıyor. Pozisyonlar artık sadece masaüstü SVG için geçerli olacak.
+// Veri yapısı aynı kalıyor.
 const processSteps = [
   {
     name: "Brief & Senaryo",
@@ -21,36 +21,74 @@ const processSteps = [
 ];
 
 const ProductionProcess = () => {
-  // Masaüstü (yatay) layout için SVG çizgilerinin koordinatlarını hesaplayan fonksiyon
-  const getLineCoordinates = () => {
+  // 1. Konteyner boyutlarını saklamak için bir state ve referans (ref) oluşturuyoruz.
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+  const containerRef = useRef(null);
+
+  // 2. Konteynerin boyutu değiştiğinde state'i güncelleyen bir useEffect.
+  // Bu sayede ekran boyutu değiştiğinde çizgiler yeniden hesaplanır (responsive).
+  useEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        setContainerSize({
+          width: containerRef.current.offsetWidth,
+          height: containerRef.current.offsetHeight,
+        });
+      }
+    };
+
+    // İlk render'da ve pencere boyutu değiştiğinde boyutu güncelle.
+    window.addEventListener("resize", updateSize);
+    updateSize(); // İlk yüklemede çalıştır
+
+    // Component kaldırıldığında event listener'ı temizle.
+    return () => window.removeEventListener("resize", updateSize);
+  }, []); // Boş dependency array, sadece mount ve unmount'ta çalışmasını sağlar.
+
+  // 3. Yüzde değerlerini alıp piksel'e çeviren güncellenmiş fonksiyon
+  const getLineCoordinates = (width, height) => {
+    if (width === 0 || height === 0) return []; // Boyutlar henüz alınmadıysa boş dizi döndür.
+
     const lines = [];
     for (let i = 0; i < processSteps.length - 1; i++) {
       const startNode = processSteps[i];
       const endNode = processSteps[i + 1];
-      lines.push({
-        x1: startNode.position.left,
-        y1: `calc(${startNode.position.top} + 10px)`, // 20px'lik dot'un merkezini bul
-        x2: endNode.position.left,
-        y2: `calc(${endNode.position.top} + 10px)`,
-      });
+
+      // Yüzde string'ini sayıya çevir (ör: "15%" -> 15)
+      const startXPercent = parseFloat(startNode.position.left);
+      const startYPercent = parseFloat(startNode.position.top);
+      const endXPercent = parseFloat(endNode.position.left);
+      const endYPercent = parseFloat(endNode.position.top);
+
+      // Piksel değerlerini hesapla
+      // 20px'lik dot'un merkezini bulmak için 10px ekliyoruz. (h-5 tailwind'de 20px'dir)
+      const x1 = (startXPercent / 100) * width;
+      const y1 = (startYPercent / 100) * height + 10;
+      const x2 = (endXPercent / 100) * width;
+      const y2 = (endYPercent / 100) * height + 10;
+
+      lines.push({ x1, y1, x2, y2 });
     }
     return lines;
   };
 
-  const lines = getLineCoordinates();
+  // 4. Hesaplanan piksel değerleriyle çizgileri oluştur.
+  const lines = getLineCoordinates(containerSize.width, containerSize.height);
 
   return (
-    <div className="py-16 md:py-24 px-4">
+    <div className="py-16 md:py-24 px-4 bg-zinc-900">
       <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16 md:mb-28">
         Prodüksiyon Süreci
       </h2>
 
-      {/* MASAÜSTÜ GÖRÜNÜM (md ve üzeri ekranlar için)
-        - 'hidden' ile mobilde gizlenir.
-        - 'md:block' ile masaüstünde görünür hale gelir.
-      */}
+      {/* MASAÜSTÜ GÖRÜNÜM */}
       <div className="hidden md:block">
-        <div className="relative w-11/12 max-w-4xl h-64 mx-auto">
+        {/* 5. Konteynere ref'i ekliyoruz. */}
+        <div
+          ref={containerRef}
+          className="relative w-11/12 max-w-4xl h-64 mx-auto"
+        >
+          {/* SVG artık sayısal değerler alacak ve tüm tarayıcılarda çalışacak */}
           <svg
             className="absolute top-0 left-0 w-full h-full z-0"
             aria-hidden="true"
@@ -84,14 +122,8 @@ const ProductionProcess = () => {
         </div>
       </div>
 
-      {/* MOBİL GÖRÜNÜM (md altı ekranlar için)
-        - 'md:hidden' ile masaüstünde gizlenir.
-        - Varsayılan olarak mobilde görünür.
-      */}
+      {/* MOBİL GÖRÜNÜM (Değişiklik yok) */}
       <div className="md:hidden max-w-md mx-auto relative pl-6">
-        {" "}
-        {/* max-w-md ile dar ekranlarda taşmayı engeller */}
-        {/* Dikey çizgi */}
         <div
           className="absolute top-0 left-2.5 w-0.5 h-full bg-orange-500 z-0"
           aria-hidden="true"
@@ -99,12 +131,8 @@ const ProductionProcess = () => {
         <div className="relative z-10">
           {processSteps.map((step, index) => (
             <div key={index} className="flex items-center mb-8 last:mb-0">
-              {/* Nokta */}
               <div className="flex-shrink-0 w-5 h-5 bg-orange-500 rounded-full border-4 border-zinc-900 z-10"></div>
-              {/* Etiket */}
               <div className="ml-6 flex-grow">
-                {" "}
-                {/* flex-grow ile etiket alanı genişler */}
                 <p className="text-white font-medium text-lg leading-snug">
                   {step.name}
                 </p>
