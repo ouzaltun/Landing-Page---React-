@@ -338,7 +338,7 @@ const SocialMediaCarousel = ({
                     <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
                       <button
                         type="button"
-                        className="pointer-events-auto group flex items-center justify-center w-20 h-20 rounded-full !bg-[#1a1a1a75] backdrop-blur-sm border border-white/40 hover:border-white/60 transition-all duration-200 !rounded-[100%] !px-[1.2em] !py-[0.6em] !text-[1em] !font-[500] !font-[inherit] !cursor-pointer !transition-[border-color] !duration-[250ms] !border !border-[#ffffff69]"
+                        className="pointer-events-auto group flex items-center justify-center w-20 h-20  !bg-[#1a1a1a75] backdrop-blur-sm  hover:border-white/60  !rounded-[100%] !px-[1.2em] !py-[0.6em] !text-[1em] !font-[500] !font-[inherit] !cursor-pointer !transition-[border-color] !duration-[250ms] !border !border-[#ffffff69]"
                         aria-label={`${item.title} videoyu oynat`}
                         onClick={(e) => {
                           e.stopPropagation();
