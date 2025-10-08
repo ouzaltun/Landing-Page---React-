@@ -66,8 +66,8 @@ export default function HeroSlider() {
         {/* Mobil cihazlarda kaydırma etkileşimini engellemek için CSS eklendi */}
         <LiquidEther
           colors={["#FF5E2E", "#FF9F68", "#FFD2A0"]}
-          mouseForce={40} // mouseForce'u her zaman 20 olarak ayarla, autoDemo zaten etkileşimi simüle edecek
-          cursorSize={120}
+          mouseForce={30} // mouseForce'u her zaman 20 olarak ayarla, autoDemo zaten etkileşimi simüle edecek
+          cursorSize={110}
           isViscous={false}
           viscous={30}
           iterationsViscous={32}
@@ -76,7 +76,7 @@ export default function HeroSlider() {
           isBounce={false}
           autoDemo={true} // Her zaman otomatik oynat
           autoSpeed={0.5}
-          autoIntensity={2.5}
+          autoIntensity={2.2}
           takeoverDuration={0.25}
           autoResumeDelay={3000}
           autoRampDuration={0.6}
