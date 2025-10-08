@@ -68,6 +68,7 @@ const SocialMediaCarousel = ({
 
   const stopAutoplay = () =>
     autoplayRef.current && clearInterval(autoplayRef.current);
+
   useEffect(() => {
     startAutoplay();
     return () => stopAutoplay();
@@ -198,6 +199,26 @@ const SocialMediaCarousel = ({
   const openVideo = (url) => setActiveVideo(url);
   const closeVideo = () => setActiveVideo(null);
 
+  // <-- YENİ FONKSİYONLAR BAŞLANGIÇ -->
+  const onPlayerReady = (event) => {
+    event.target.playVideo();
+  };
+
+  const getVideoId = (url) => {
+    try {
+      const urlObj = new URL(url);
+      if (urlObj.pathname.includes("embed")) {
+        const pathParts = urlObj.pathname.split("/");
+        return pathParts[pathParts.length - 1];
+      }
+      return urlObj.searchParams.get("v");
+    } catch (error) {
+      console.error("Geçersiz YouTube URL'si:", url);
+      return null;
+    }
+  };
+  // <-- YENİ FONKSİYONLAR BİTİŞ -->
+
   if (!items || items.length === 0) {
     return (
       <div className="w-full min-h-screen bg-black flex items-center justify-center">
@@ -289,7 +310,6 @@ const SocialMediaCarousel = ({
                   />
                   {item.videoUrl && (
                     <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-                      {/* === YENİ PLAY BUTONU TASARIMI BAŞLANGIÇ === */}
                       <button
                         type="button"
                         className="pointer-events-auto group flex items-center justify-center w-20 h-20 rounded-full !bg-[#1a1a1a75] backdrop-blur-sm border border-white/40 hover:border-white/60 transition-all duration-200 !rounded-[100%] !px-[1.2em] !py-[0.6em] !text-[1em] !font-[500] !font-[inherit] !cursor-pointer !transition-[border-color] !duration-[250ms] !border !border-[#ffffff69]"
@@ -310,7 +330,6 @@ const SocialMediaCarousel = ({
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </button>
-                      {/* === YENİ PLAY BUTONU TASARIMI BİTİŞ === */}
                     </div>
                   )}
                   <div className="absolute bottom-0 left-0 p-6 text-left z-30">
@@ -353,20 +372,21 @@ const SocialMediaCarousel = ({
             >
               <X size={24} />
             </button>
-            {/* === ESKİ IFRAME YERİNE YENİ YOUTUBE COMPONENTİ === */}
+            {/* <-- GÜNCELLENMİŞ YOUTUBE COMPONENTİ BAŞLANGIÇ --> */}
             <YouTube
-              videoId={new URL(activeVideo).searchParams.get("v")} // URL'den video ID'sini alır
+              videoId={getVideoId(activeVideo)}
               opts={{
                 height: "100%",
                 width: "100%",
                 playerVars: {
-                  autoplay: 1, // Otomatik oynatmayı burada belirtiyoruz
+                  playsinline: 1,
                 },
               }}
+              onReady={onPlayerReady} // <-- DEĞİŞİKLİK
               className="w-full h-full"
               iframeClassName="w-full h-full"
             />
-            {/* ================================================= */}
+            {/* <-- GÜNCELLENMİŞ YOUTUBE COMPONENTİ BİTİŞ --> */}
           </div>
         </div>
       )}
