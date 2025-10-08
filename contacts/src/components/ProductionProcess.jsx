@@ -76,7 +76,7 @@ const ProductionProcess = () => {
   const lines = getLineCoordinates(containerSize.width, containerSize.height);
 
   return (
-    <div className="py-16 md:py-24 px-4 pb-[200px] md:pb-0">
+    <div className="py-16 md:py-24 px-4 pb-[200px] ">
       <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16 md:mb-28">
         Prodüksiyon Süreci
       </h2>

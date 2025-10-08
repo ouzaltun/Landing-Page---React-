@@ -24,16 +24,21 @@ export default function HeroSlider() {
     return () => window.removeEventListener("keydown", onKey);
   }, [activeVideo, closeVideo]);
 
-  // Chrome (ses açık) vs Safari/iOS (sessiz) tespiti
-  const playbackPrefs = useMemo(() => {
+  // Chrome (ses açık) vs Safari/iOS (sessiz) tespiti ve mobil cihaz tespiti
+  const devicePrefs = useMemo(() => {
     const ua = navigator.userAgent || "";
     const isIOS =
       /iPad|iPhone|iPod/.test(ua) ||
       (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        ua
+      ) || window.innerWidth <= 768; // Genişliği de kontrol et
+
     // iOS ve Safari'de sessiz başlat; diğerlerinde ses açık
     const shouldMute = isIOS || isSafari;
-    return { shouldMute, isIOS, isSafari };
+    return { shouldMute, isIOS, isSafari, isMobile };
   }, []);
 
   const getVideoId = (url) => {
@@ -53,20 +58,25 @@ export default function HeroSlider() {
   return (
     <section className="hero-wrap relative z-0">
       {/* === Arka plan === */}
-      <div className="hero-bg absolute inset-0 z-0">
+      <div
+        className="hero-bg absolute inset-0 z-0"
+        style={devicePrefs.isMobile ? { pointerEvents: "none" } : {}}
+      >
+        {" "}
+        {/* Mobil cihazlarda kaydırma etkileşimini engellemek için CSS eklendi */}
         <LiquidEther
           colors={["#FF5E2E", "#FF9F68", "#FFD2A0"]}
-          mouseForce={20}
-          cursorSize={100}
+          mouseForce={40} // mouseForce'u her zaman 20 olarak ayarla, autoDemo zaten etkileşimi simüle edecek
+          cursorSize={120}
           isViscous={false}
           viscous={30}
           iterationsViscous={32}
           iterationsPoisson={32}
           resolution={0.5}
           isBounce={false}
-          autoDemo={true}
+          autoDemo={true} // Her zaman otomatik oynat
           autoSpeed={0.5}
-          autoIntensity={2.2}
+          autoIntensity={2.5}
           takeoverDuration={0.25}
           autoResumeDelay={3000}
           autoRampDuration={0.6}
@@ -141,7 +151,7 @@ export default function HeroSlider() {
                   playerVars: {
                     autoplay: 1,
                     playsinline: 1,
-                    mute: playbackPrefs.shouldMute ? 1 : 0,
+                    mute: devicePrefs.shouldMute ? 1 : 0,
                     rel: 0,
                     modestbranding: 1,
                   },
@@ -156,7 +166,7 @@ export default function HeroSlider() {
                       );
                     }
                     // Chrome (mute=false) için sesi açık başlat
-                    if (!playbackPrefs.shouldMute) {
+                    if (!devicePrefs.shouldMute) {
                       e.target.unMute?.();
                       e.target.setVolume?.(100);
                     }

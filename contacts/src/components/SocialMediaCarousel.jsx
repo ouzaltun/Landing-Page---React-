@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import StarBorder from "./StarBorder";
 import YouTube from "react-youtube";
@@ -21,6 +21,20 @@ const SocialMediaCarousel = ({
   const carouselRef = useRef(null);
   const trackRef = useRef(null);
   const autoplayRef = useRef(null);
+
+  // Tarayıcı tespiti: Safari/iOS'ta sessiz başlat, diğerlerinde ses açık
+  const playbackPrefs = useMemo(() => {
+    const ua =
+      typeof navigator !== "undefined" ? navigator.userAgent || "" : "";
+    const isIOS =
+      /iPad|iPhone|iPod/.test(ua) ||
+      (typeof navigator !== "undefined" &&
+        navigator.platform === "MacIntel" &&
+        navigator.maxTouchPoints > 1);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+    const shouldMute = isIOS || isSafari;
+    return { shouldMute, isIOS, isSafari };
+  }, []);
 
   const createIdFromString = (text) => {
     const turkishMap = {
@@ -199,11 +213,7 @@ const SocialMediaCarousel = ({
   const openVideo = (url) => setActiveVideo(url);
   const closeVideo = () => setActiveVideo(null);
 
-  // <-- YENİ FONKSİYONLAR BAŞLANGIÇ -->
-  const onPlayerReady = (event) => {
-    event.target.playVideo();
-  };
-
+  // YouTube yardımcıları
   const getVideoId = (url) => {
     try {
       const urlObj = new URL(url);
@@ -217,7 +227,23 @@ const SocialMediaCarousel = ({
       return null;
     }
   };
-  // <-- YENİ FONKSİYONLAR BİTİŞ -->
+
+  const onPlayerReady = (event) => {
+    try {
+      const iframe = event.target.getIframe?.();
+      if (iframe && !iframe.getAttribute("allow")) {
+        iframe.setAttribute(
+          "allow",
+          "autoplay; encrypted-media; picture-in-picture"
+        );
+      }
+      if (!playbackPrefs.shouldMute) {
+        event.target.unMute?.();
+        event.target.setVolume?.(100);
+      }
+      event.target.playVideo?.();
+    } catch {}
+  };
 
   if (!items || items.length === 0) {
     return (
@@ -372,21 +398,25 @@ const SocialMediaCarousel = ({
             >
               <X size={24} />
             </button>
-            {/* <-- GÜNCELLENMİŞ YOUTUBE COMPONENTİ BAŞLANGIÇ --> */}
+
             <YouTube
+              key={getVideoId(activeVideo) || "video"}
               videoId={getVideoId(activeVideo)}
               opts={{
                 height: "100%",
                 width: "100%",
                 playerVars: {
+                  autoplay: 1,
                   playsinline: 1,
+                  mute: playbackPrefs.shouldMute ? 1 : 0,
+                  rel: 0,
+                  modestbranding: 1,
                 },
               }}
-              onReady={onPlayerReady} // <-- DEĞİŞİKLİK
+              onReady={onPlayerReady}
               className="w-full h-full"
               iframeClassName="w-full h-full"
             />
-            {/* <-- GÜNCELLENMİŞ YOUTUBE COMPONENTİ BİTİŞ --> */}
           </div>
         </div>
       )}
