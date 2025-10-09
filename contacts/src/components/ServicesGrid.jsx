@@ -4,8 +4,8 @@ import SpotlightCard from "./SpotlightCard";
 // Lütfen dosya adlarının ve yollarının projenizle tam olarak eşleştiğinden emin olun.
 import imgKurumsal from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/kurumsal tanıtım filmleri.jpg";
 import imgSosyal from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/sosyal medya.jpg";
-import imgInfluencer from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/Influencer işbirlikleri.jpg";
-import imgEtkinlik from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/etkinlik çekimleri.jpg";
+import imgInfluencer from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/Influencer.jpg";
+import imgEtkinlik from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/etkinlik.jpg";
 
 const cards = [
   {
