@@ -428,7 +428,7 @@ export default function App() {
       image: imgPwc2,
       yearInfo: "2025 • Yılbaşı Etkinliği",
       title: "PwC",
-      videoUrl: "https://www.youtube.com/watch?v=NIMbq56O-3Y",
+      videoUrl: "https://www.youtube.com/watch?v=qkttB8sh7hA",
     },
   ];
 
