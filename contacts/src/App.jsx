@@ -66,6 +66,13 @@ import imgSafa1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya 
 import imgSafa2 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/safa manav 2.jpg";
 import imgSafa3 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/safa manav 3.jpg";
 
+import imgHalkbank from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/halkbank.jpg";
+import imgAkbank from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/akbank.jpg";
+import imgEndress from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/endress hauser.jpg";
+import imgNow from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/now.jpg";
+import imgPwc from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/pwc.jpg";
+import imgPwc2 from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/pwc 2.jpg";
+
 export default function App() {
   const handleAnimationComplete = () => {
     console.log("All letters have animated!");
@@ -379,6 +386,52 @@ export default function App() {
       videoUrl: "https://www.youtube.com/shorts/JCgMoYkeHRk",
     },
   ];
+
+  const itemsEvent = [
+    {
+      image: imgHalkbank,
+      yearInfo: "2024 • Üreten Kadınlar Etkinliği",
+      title: "Halkbank",
+      videoUrl: "https://www.youtube.com/watch?v=snSAmGurghw",
+    },
+    {
+      image: imgAkbank,
+      yearInfo: "2024 • Akbank Leader’s Summit",
+      title: "Akbank",
+      videoUrl: "https://www.youtube.com/watch?v=LuA6PxfDv3c",
+    },
+    {
+      image: imgEndress,
+      yearInfo: "2025 • Pin Töreni",
+      title: "Endress+Hauser",
+      videoUrl: "https://www.youtube.com/watch?v=ZAysUKEypHc",
+    },
+    {
+      image: imgNow,
+      yearInfo: "2025 • Lansman",
+      title: "NOW",
+      videoUrl: "https://www.youtube.com/watch?v=FmCVEoEefXQ",
+    },
+    {
+      image: imgPwc,
+      yearInfo: "2024 • Platform Etkinliği",
+      title: "PwC",
+      videoUrl: "https://www.youtube.com/watch?v=lEtMAkXWoT4",
+    },
+    {
+      image: imgHalkbank,
+      yearInfo: "2025 • Üreten Kadınlar Etkinliği",
+      title: "Halkbank",
+      videoUrl: "https://www.youtube.com/watch?v=NIMbq56O-3Y",
+    },
+    {
+      image: imgPwc2,
+      yearInfo: "2025 • Yılbaşı Etkinliği",
+      title: "PwC",
+      videoUrl: "https://www.youtube.com/watch?v=NIMbq56O-3Y",
+    },
+  ];
+
   return (
     <>
       <HeroSlider />
@@ -428,7 +481,7 @@ export default function App() {
       />
       <Divider className="my-4" />
       <SocialMediaCarousel
-        items={items3}
+        items={itemsEvent}
         initialIndex={0}
         loop={true}
         headerTitle="Etkinlik Çekimleri"

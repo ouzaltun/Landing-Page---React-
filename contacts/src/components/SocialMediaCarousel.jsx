@@ -36,6 +36,7 @@ const SocialMediaCarousel = ({
     return { shouldMute, isIOS, isSafari };
   }, []);
 
+  // Başlık id'si
   const createIdFromString = (text) => {
     const turkishMap = {
       ç: "c",
@@ -63,16 +64,63 @@ const SocialMediaCarousel = ({
   };
   const headerId = createIdFromString(headerTitle);
 
+  // YouTube URL / ID ayrıştırıcı: watch, youtu.be, embed, shorts + start zamanı
+  const parseYouTube = (raw) => {
+    try {
+      if (/^[a-zA-Z0-9_-]{11}$/.test(raw)) {
+        return { id: raw, start: 0 };
+      }
+      const u = new URL(raw);
+
+      let id = u.searchParams.get("v");
+
+      if (!id && /youtu\.be$/.test(u.hostname)) {
+        id = u.pathname.split("/").filter(Boolean)[0];
+      }
+
+      if (!id && u.pathname.includes("/embed/")) {
+        id = u.pathname.split("/").pop();
+      }
+
+      if (!id && u.pathname.includes("/shorts/")) {
+        const parts = u.pathname.split("/");
+        const idx = parts.indexOf("shorts");
+        id = idx >= 0 ? parts[idx + 1] : null;
+        // bazı shorts URL'lerinde sonda / olabiliyor
+        if (id && id.length > 11) id = id.slice(0, 11);
+      }
+
+      // Başlangıç zamanı (t=1m20s, t=80s, start=80)
+      let start = 0;
+      const t = u.searchParams.get("t") || u.searchParams.get("start");
+      if (t) {
+        const m = /^((\d+)m)?((\d+)s)?$/.exec(t);
+        if (m) {
+          const mins = parseInt(m[2] || "0", 10);
+          const secs = parseInt(m[4] || "0", 10);
+          start = mins * 60 + secs;
+        } else {
+          start = parseInt(t, 10) || 0;
+        }
+      }
+      return { id: id || null, start };
+    } catch {
+      return { id: null, start: 0 };
+    }
+  };
+
   const goToNext = useCallback(() => {
     if (loop) setCurrentIndex((prev) => (prev + 1) % items.length);
     else if (currentIndex < items.length - 1) setCurrentIndex(currentIndex + 1);
-  }, [currentIndex, items.length, loop]);
+    if (onChange) onChange((currentIndex + 1) % items.length);
+  }, [currentIndex, items.length, loop, onChange]);
 
   const goToPrevious = useCallback(() => {
     if (loop)
       setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
     else if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
-  }, [currentIndex, items.length, loop]);
+    if (onChange) onChange((currentIndex - 1 + items.length) % items.length);
+  }, [currentIndex, items.length, loop, onChange]);
 
   const startAutoplay = useCallback(() => {
     if (!autoplay || isDragging) return;
@@ -80,8 +128,9 @@ const SocialMediaCarousel = ({
     autoplayRef.current = setInterval(() => goToNext(), autoplayInterval);
   }, [autoplay, autoplayInterval, goToNext, isDragging]);
 
-  const stopAutoplay = () =>
-    autoplayRef.current && clearInterval(autoplayRef.current);
+  const stopAutoplay = () => {
+    if (autoplayRef.current) clearInterval(autoplayRef.current);
+  };
 
   useEffect(() => {
     startAutoplay();
@@ -107,8 +156,10 @@ const SocialMediaCarousel = ({
   const goToSlide = (index) => {
     setCurrentIndex(index);
     stopAutoplay();
+    if (onChange) onChange(index);
   };
 
+  // Drag & Touch
   const handleMouseDown = (e) => {
     stopAutoplay();
     setIsDragging(true);
@@ -210,24 +261,18 @@ const SocialMediaCarousel = ({
     };
   };
 
-  const openVideo = (url) => setActiveVideo(url);
+  // Video aç/kapat
+  const openVideo = (url) => {
+    const { id } = parseYouTube(url);
+    if (!id) {
+      window.open(url, "_blank", "noopener,noreferrer");
+      return;
+    }
+    setActiveVideo(url);
+  };
   const closeVideo = () => setActiveVideo(null);
 
-  // YouTube yardımcıları
-  const getVideoId = (url) => {
-    try {
-      const urlObj = new URL(url);
-      if (urlObj.pathname.includes("embed")) {
-        const pathParts = urlObj.pathname.split("/");
-        return pathParts[pathParts.length - 1];
-      }
-      return urlObj.searchParams.get("v");
-    } catch (error) {
-      console.error("Geçersiz YouTube URL'si:", url);
-      return null;
-    }
-  };
-
+  // Player hazır olunca izinler ve ses
   const onPlayerReady = (event) => {
     try {
       const iframe = event.target.getIframe?.();
@@ -259,6 +304,7 @@ const SocialMediaCarousel = ({
       onMouseEnter={stopAutoplay}
       onMouseLeave={startAutoplay}
     >
+      {/* Üst Başlık + CTA */}
       <div className="absolute mt-20 z-40 w-full px-4">
         <div className="section-container flex items-center justify-center md:justify-between gap-4">
           <div
@@ -282,11 +328,13 @@ const SocialMediaCarousel = ({
         </div>
       </div>
 
+      {/* Carousel */}
       <div
         ref={carouselRef}
         className="relative w-full h-screen flex items-center justify-center"
         style={{ perspective: "1200px" }}
       >
+        {/* Sol / Sağ */}
         <button
           onClick={() => {
             goToPrevious();
@@ -310,6 +358,7 @@ const SocialMediaCarousel = ({
           <ChevronRight size={20} />
         </button>
 
+        {/* Kartlar */}
         <div
           ref={trackRef}
           className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
@@ -330,15 +379,19 @@ const SocialMediaCarousel = ({
                     loading="lazy"
                   />
                   <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+
+                  {/* Resme tıklayınca sadece slayt seçim */}
                   <div
                     className="absolute inset-0 z-10"
                     onClick={() => goToSlide(index)}
                   />
+
+                  {/* Play butonu (sadece videoya tıklandığında aç) */}
                   {item.videoUrl && (
                     <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
                       <button
                         type="button"
-                        className="pointer-events-auto group flex items-center justify-center w-20 h-20  !bg-[#1a1a1a75] backdrop-blur-sm  hover:border-white/60  !rounded-[100%] !px-[1.2em] !py-[0.6em] !text-[1em] !font-[500] !font-[inherit] !cursor-pointer !transition-[border-color] !duration-[250ms] !border !border-[#ffffff69]"
+                        className="pointer-events-auto group flex items-center justify-center w-20 h-20 !bg-[#1a1a1a75] backdrop-blur-sm hover:border-white/60 !rounded-[100%] !px-[1.2em] !py-[0.6em] !text-[1em] !font-[500] !font-[inherit] !cursor-pointer !transition-[border-color] !duration-[250ms] !border !border-[#ffffff69]"
                         aria-label={`${item.title} videoyu oynat`}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -358,6 +411,8 @@ const SocialMediaCarousel = ({
                       </button>
                     </div>
                   )}
+
+                  {/* Alt Bilgi */}
                   <div className="absolute bottom-0 left-0 p-6 text-left z-30">
                     <p className="text-gray-300 text-sm mb-1 font-medium">
                       {item.yearInfo}
@@ -372,6 +427,7 @@ const SocialMediaCarousel = ({
           ))}
         </div>
 
+        {/* Noktalar */}
         <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30">
           {items.map((_, index) => (
             <button
@@ -399,24 +455,36 @@ const SocialMediaCarousel = ({
               <X size={24} />
             </button>
 
-            <YouTube
-              key={getVideoId(activeVideo) || "video"}
-              videoId={getVideoId(activeVideo)}
-              opts={{
-                height: "100%",
-                width: "100%",
-                playerVars: {
-                  autoplay: 1,
-                  playsinline: 1,
-                  mute: playbackPrefs.shouldMute ? 1 : 0,
-                  rel: 0,
-                  modestbranding: 1,
-                },
-              }}
-              onReady={onPlayerReady}
-              className="w-full h-full"
-              iframeClassName="w-full h-full"
-            />
+            {(() => {
+              const { id, start } = parseYouTube(activeVideo);
+              if (!id) {
+                // ID çıkmazsa yeni sekmede açıp modalı kapat
+                window.open(activeVideo, "_blank", "noopener,noreferrer");
+                closeVideo();
+                return null;
+              }
+              return (
+                <YouTube
+                  key={id}
+                  videoId={id}
+                  opts={{
+                    height: "100%",
+                    width: "100%",
+                    playerVars: {
+                      autoplay: 1,
+                      playsinline: 1,
+                      mute: playbackPrefs.shouldMute ? 1 : 0,
+                      rel: 0,
+                      modestbranding: 1,
+                      start, // t veya start parametresi desteklenir
+                    },
+                  }}
+                  onReady={onPlayerReady}
+                  className="w-full h-full"
+                  iframeClassName="w-full h-full"
+                />
+              );
+            })()}
           </div>
         </div>
       )}
