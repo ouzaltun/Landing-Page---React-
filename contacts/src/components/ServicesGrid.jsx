@@ -1,10 +1,11 @@
 import SpotlightCard from "./SpotlightCard";
 
-// Görsel importları (senin klasör yapına göre)
-import imgKurumsal from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/PWC.jpg";
-import imgSosyal from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/elvan-bayraktar.jpg";
-import imgInfluencer from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/muslera.jpg";
-import imgEtkinlik from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/dichento.jpg";
+// DEĞİŞİKLİK 1: Resim importları, ekran görüntüsündeki dosya adlarına göre güncellendi.
+// Lütfen dosya adlarının ve yollarının projenizle tam olarak eşleştiğinden emin olun.
+import imgKurumsal from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/kurumsal tanıtım filmleri.jpg";
+import imgSosyal from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/sosyal medya.jpg";
+import imgInfluencer from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/Influencer işbirlikleri.jpg";
+import imgEtkinlik from "../assets/Produksiyon/PortfolyoKapaklari/Slideralti/etkinlik çekimleri.jpg";
 
 const cards = [
   {
@@ -41,11 +42,20 @@ export default function ServicesGrid() {
             >
               <a className="card-link" href={c.href}>
                 <figure className="card-media">
-                  <img src={c.image} alt={c.title} loading="lazy" />
+                  {/* DEĞİŞİKLİK 3: Resmin kartı kaplaması için Tailwind sınıfları eklendi */}
+                  <img
+                    src={c.image}
+                    alt={c.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
                 </figure>
+                {/* DEĞİŞİKLİK 2: Resmin altındaki başlık bölümü kaldırıldı */}
+                {/*
                 <div className="card-body">
                   <h3 className="card-title">{c.title}</h3>
                 </div>
+                */}
               </a>
             </SpotlightCard>
           ))}

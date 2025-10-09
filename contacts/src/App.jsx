@@ -59,6 +59,7 @@ import imgTiyatro1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Med
 import imgTiyatro2 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/tiyatro 2.jpg";
 
 import imgVillages from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/Villages _ Gayrimenkul _ Tanıtım Filmi.jpg";
+import imgVillages2 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/villages 2.jpg";
 
 import imgNove from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/nove care.jpg";
 
@@ -352,7 +353,7 @@ export default function App() {
       videoUrl: "https://www.youtube.com/shorts/wG7jjRc981o",
     },
     {
-      image: imgVillages,
+      image: imgVillages2,
       yearInfo: "2025 • Gayrimenkul",
       title: "Villages",
       videoUrl: "https://www.youtube.com/shorts/5rnCsBP_y4I",
@@ -454,32 +455,25 @@ export default function App() {
         />
       </div>
       <SocialMediaCarousel
-        items={items}
+        items={items2}
         initialIndex={0}
         loop={true}
-        headerTitle="Kurumsal Tanıtım Filmleri"
+        headerTitle="Influencer Çalışmaları"
         autoplay={true}
         autoplayInterval={2000}
       />
       <Divider className="my-4" />
+
       <SocialMediaCarousel
         items={items3}
         initialIndex={0}
         loop={true}
         headerTitle="Sosyal Medya İçerikleri"
         autoplay={true}
-        autoplayInterval={5000}
-      />
-      <Divider className="my-4" />
-      <SocialMediaCarousel
-        items={items2}
-        initialIndex={0}
-        loop={true}
-        headerTitle="Influencer Çalışmaları"
-        autoplay={true}
         autoplayInterval={3000}
       />
       <Divider className="my-4" />
+
       <SocialMediaCarousel
         items={itemsEvent}
         initialIndex={0}
@@ -488,6 +482,16 @@ export default function App() {
         autoplay={true}
         autoplayInterval={4000}
       />
+      <Divider className="my-4" />
+      <SocialMediaCarousel
+        items={items}
+        initialIndex={0}
+        loop={true}
+        headerTitle="Kurumsal Tanıtım Filmleri"
+        autoplay={true}
+        autoplayInterval={5000}
+      />
+
       <PortfolioSection />
       <Testimonials />
       <ProductionProcess />

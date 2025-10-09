@@ -86,11 +86,9 @@ const SocialMediaCarousel = ({
         const parts = u.pathname.split("/");
         const idx = parts.indexOf("shorts");
         id = idx >= 0 ? parts[idx + 1] : null;
-        // bazı shorts URL'lerinde sonda / olabiliyor
         if (id && id.length > 11) id = id.slice(0, 11);
       }
 
-      // Başlangıç zamanı (t=1m20s, t=80s, start=80)
       let start = 0;
       const t = u.searchParams.get("t") || u.searchParams.get("start");
       if (t) {
@@ -334,7 +332,7 @@ const SocialMediaCarousel = ({
         className="relative w-full h-screen flex items-center justify-center"
         style={{ perspective: "1200px" }}
       >
-        {/* Sol / Sağ */}
+        {/* Sol / Sağ Butonlar (GÖRSELDEKİ GİBİ GÜNCELLENDİ) */}
         <button
           onClick={() => {
             goToPrevious();
@@ -342,9 +340,11 @@ const SocialMediaCarousel = ({
           }}
           disabled={!loop && currentIndex === 0}
           aria-label="Önceki slayt"
-          className="absolute left-8 z-30 p-2 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+          // DEĞİŞİKLİK: Tailwind sınıfları güncellendi.
+          className="absolute left-8 z-30 !rounded-full !md:p-[1.2em] !p-[0.8em] !bg-[#F54400] backdrop-blur-sm border !border-[#ffffff69] cursor-pointer transition-all duration-250 hover:border-white/60 disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          <ChevronLeft size={20} />
+          {/* DEĞİŞİKLİK: Ok rengi beyaza çevrildi. */}
+          <ChevronLeft size={24} color="#FFFFFF" />
         </button>
         <button
           onClick={() => {
@@ -353,9 +353,11 @@ const SocialMediaCarousel = ({
           }}
           disabled={!loop && currentIndex === items.length - 1}
           aria-label="Sonraki slayt"
-          className="absolute right-8 z-30 p-2 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+          // DEĞİŞİKLİK: Tailwind sınıfları güncellendi.
+          className="absolute right-8 z-30 !rounded-full !md:p-[1.2em] !p-[0.8em] !bg-[#F54400] backdrop-blur-sm border !border-[#ffffff69] cursor-pointer transition-all duration-250 hover:border-white/60 disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          <ChevronRight size={20} />
+          {/* DEĞİŞİKLİK: Ok rengi beyaza çevrildi. */}
+          <ChevronRight size={24} color="#FFFFFF" />
         </button>
 
         {/* Kartlar */}
@@ -380,13 +382,11 @@ const SocialMediaCarousel = ({
                   />
                   <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
-                  {/* Resme tıklayınca sadece slayt seçim */}
                   <div
                     className="absolute inset-0 z-10"
                     onClick={() => goToSlide(index)}
                   />
 
-                  {/* Play butonu (sadece videoya tıklandığında aç) */}
                   {item.videoUrl && (
                     <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
                       <button
@@ -412,7 +412,6 @@ const SocialMediaCarousel = ({
                     </div>
                   )}
 
-                  {/* Alt Bilgi */}
                   <div className="absolute bottom-0 left-0 p-6 text-left z-30">
                     <p className="text-gray-300 text-sm mb-1 font-medium">
                       {item.yearInfo}
@@ -424,22 +423,6 @@ const SocialMediaCarousel = ({
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Noktalar */}
-        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30">
-          {items.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? "bg-white scale-125"
-                  : "bg-white/30 hover:bg-white/50"
-              }`}
-              aria-label={`Slayt ${index + 1}'e git`}
-            />
           ))}
         </div>
       </div>
@@ -458,7 +441,6 @@ const SocialMediaCarousel = ({
             {(() => {
               const { id, start } = parseYouTube(activeVideo);
               if (!id) {
-                // ID çıkmazsa yeni sekmede açıp modalı kapat
                 window.open(activeVideo, "_blank", "noopener,noreferrer");
                 closeVideo();
                 return null;
@@ -476,7 +458,7 @@ const SocialMediaCarousel = ({
                       mute: playbackPrefs.shouldMute ? 1 : 0,
                       rel: 0,
                       modestbranding: 1,
-                      start, // t veya start parametresi desteklenir
+                      start,
                     },
                   }}
                   onReady={onPlayerReady}
