@@ -11,22 +11,22 @@ import FloatingSocial from "./components/FloatingSocial";
 // Influencer İçerikleri — Imports
 import imgMusleraBioxcin from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/bioxcin muslera.jpg";
 import imgGururKonyali from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/gururaydogan.jpg";
-import imgBaranTrendlife from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/Baran Demiroğlu x Trendlife.jpg";
+import imgBaranTrendlife from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/Baran.jpg";
 import imgMustafaReacher from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/Mustafa Sandal x Reacher.jpg";
 import imgAliRizaOptimum from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/Ali Rıza Bilal x Optimum Nutrition.jpg";
-import imgAleynaGloria from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/gloria jeans x aleyna çalışkan.jpg";
-import imgDeryaSaka1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/derya cebecioğlu x saka.jpg";
-import imgDeryaSaka2 from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/derya cebecioğlu x saka 2.jpg";
+import imgAleynaGloria from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/aleyna.jpg";
+import imgDeryaSaka1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/deryacebecioglu.jpg";
+import imgDeryaSaka2 from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/deryacebecioglu2.jpg";
 import imgGururPierre from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/gurur x pierre cardin.jpg";
 import imgEmreKonyali from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/Emre Keskin x Konyalı Saat.jpg";
 import imgBuseInStreet from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/Buse Kara x In Street.jpg";
-import imgSimge7Days from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/simge aköz x 7 days.jpg";
+import imgSimge7Days from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/simge.jpg";
 import imgMerveSaka from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/Merve Yıldırım x Saka.jpg";
 import imgMerveOptimum from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/Merve Yıldırım x Optimum Nutrition.jpg";
 import imgYilmazMisli from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/yılmaz vural x misli.jpg";
-import imgOzkanMisli from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/Özkan Öztürk x Misli.jpg";
-import imgMujdatMisli from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/Müjdat Muratoğlu x Misli.jpg";
-import imgGokhanMisli from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/Gökhan Abdik x Misli.jpg";
+import imgOzkanMisli from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/ozkanozturk.jpg";
+import imgMujdatMisli from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/mujdat.jpg";
+import imgGokhanMisli from "../src/assets/Produksiyon/PortfolyoKapaklari/Influencer İçerikleri/gokhanabdik.jpg";
 
 import imgDichento from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/dichento.jpg";
 import imgFahriGunes from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/fahrigunes.jpg";
@@ -36,8 +36,8 @@ import imgProcsin from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Ta
 import imgMakss from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/makss handle.jpg";
 
 // Sosyal Medya İçerikleri — Imports
-import imgGiray1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/giray genç.jpg";
-import imgGiray2 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/giray genç 2.jpg";
+import imgGiray1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/giraygenc.jpg";
+import imgGiray2 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/giraygenc2.jpg";
 
 import imgElvan1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/elvan bayraktar.jpg";
 import imgElvan2 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/elvan bayraktar 2.jpg";
@@ -48,14 +48,14 @@ import imgAlper1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya
 import imgAlper2 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/alper burak uslu 2.jpg";
 import imgAlper3 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/alper burak uslu 3.jpg";
 
-import imgUtku from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/utku erdem özer.jpg";
+import imgUtku from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/utkuerdemozer.jpg";
 
 import imgBade1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/bade natural 1.jpg";
 import imgBade2 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/bade natural 2.jpg";
 import imgBade4 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/bade natural 4.jpg";
 import imgBade from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/bade.jpg";
 
-import imgTiyatro1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/tiyatro keyfi - kemal başar.jpg";
+import imgTiyatro1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/kemalbasar.jpg";
 import imgTiyatro2 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/tiyatro 2.jpg";
 
 import imgVillages from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/Villages _ Gayrimenkul _ Tanıtım Filmi.jpg";
