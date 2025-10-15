@@ -34,6 +34,7 @@ import imgHyatt from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tan�
 import imgSafaManav from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/safa manav.jpg";
 import imgProcsin from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/Procsin Tanıtım Filmi.jpg";
 import imgMakss from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/makss handle.jpg";
+import imgSaasali from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/sasaalı.jpg";
 
 // Sosyal Medya İçerikleri — Imports
 import imgGiray1 from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/giraygenc.jpg";
@@ -74,6 +75,17 @@ import imgNow from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekiml
 import imgPwc from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/pwc.jpg";
 import imgPwc2 from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekimleri/pwc 2.jpg";
 
+// Sosyal Medya İçerikleri — Imports
+import imgPerwoll from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/merveperwoll.jpg";
+import imgSasaliAtasehir from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/kemalbasar.jpg";
+import imgSara from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/profsaracoglu.jpg";
+import imgTrendlife from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/sonaytrendlife.jpg";
+import imgCaddeMarka from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/caddemarka.jpg";
+import imgIff from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/hata.jpg";
+import imgGaialea from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/gaialea.jpg";
+import imgPicco from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/piccocoffee.jpg";
+import imgUruh from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/uruhxgalata.jpg";
+
 export default function App() {
   const handleAnimationComplete = () => {
     console.log("All letters have animated!");
@@ -100,6 +112,13 @@ export default function App() {
       videoUrl: "https://www.youtube.com/watch?v=Ja-Y6VAZv44",
     },
     {
+      image: imgSaasali,
+      yearInfo: "2024 • Şaşaalı Ataşehir Eğlencesi",
+      title: "Şaşaalı",
+      videoUrl: "https://www.youtube.com/shorts/f5nGj3T26Zs",
+    },
+
+    {
       image: imgMakss,
       yearInfo: "2025 • Fuar Tanıtımı",
       title: "Makss Handle",
@@ -110,12 +129,6 @@ export default function App() {
       yearInfo: "2024 • Ürün Tanıtımı",
       title: "Dichento",
       videoUrl: "https://www.youtube.com/watch?v=jqF2LZi2uGA",
-    },
-    {
-      image: imgSafaManav,
-      yearInfo: "2025 • Plastik Cerrah Tanıtımı",
-      title: "Dr. Safa Manav",
-      videoUrl: "https://www.youtube.com/watch?v=EOB-NHk6JQ0",
     },
   ];
 
@@ -201,17 +214,6 @@ export default function App() {
   ];
 
   const items3 = [
-    // Dr. Alper Burak Uslu (3)
-
-    {
-      image: imgAlper1,
-      yearInfo: "2024 • Sağlık Turizmi",
-      title: "Dr. Alper Burak Uslu",
-      videoUrl: "https://www.youtube.com/shorts/Y3pS9NMTlP0",
-    },
-
-    // Dr. Utku Erdem Özer (1)
-
     // Bade Natural (5)
     {
       image: imgBade1,
@@ -264,6 +266,61 @@ export default function App() {
       videoUrl: "https://www.youtube.com/shorts/z478lPFEHYk",
     },
 
+    {
+      image: imgPerwoll,
+      yearInfo: "2025 • Ürün Tanıtımı",
+      title: "Perwoll",
+      videoUrl: "https://www.youtube.com/shorts/KvYGSjSGU7M",
+    },
+    {
+      image: imgSasaliAtasehir,
+      yearInfo: "2024 • Kurumsal Tanıtım",
+      title: "Şaşaalı Ataşehir",
+      videoUrl: "https://www.youtube.com/shorts/f5nGj3T26Zs",
+    },
+    {
+      image: imgSara,
+      yearInfo: "2025 • Ürün Tanıtımı",
+      title: "Prof. Saraçoğlu",
+      videoUrl: "https://www.youtube.com/shorts/CNUAMaZpctM",
+    },
+    {
+      image: imgTrendlife,
+      yearInfo: "2025 • Tanıtım",
+      title: "Trendlife",
+      videoUrl: "https://www.youtube.com/shorts/6VN1-tPEHdI",
+    },
+    {
+      image: imgCaddeMarka,
+      yearInfo: "2024 • Ürün Tanıtımı",
+      title: "Cadde Marka",
+      videoUrl: "https://www.youtube.com/watch?v=INlDNh5dRCo",
+    },
+    {
+      image: imgIff,
+      yearInfo: "2024 • Tanıtım",
+      title: "International İstanbul Furniture Fair",
+      videoUrl: "https://www.youtube.com/shorts/9eWqTGKKCZo",
+    },
+    {
+      image: imgGaialea,
+      yearInfo: "2024 • Ürün Tanıtımı",
+      title: "Gaialea Cosmetics",
+      videoUrl: "https://www.youtube.com/shorts/Xv6Fxs4145w",
+    },
+    {
+      image: imgPicco,
+      yearInfo: "2025 • Tanıtım",
+      title: "Picco Coffee",
+      videoUrl: "https://www.youtube.com/watch?v=qbxdSR5FGxU",
+    },
+    {
+      image: imgUruh,
+      yearInfo: "2025 • Tanıtım",
+      title: "UruhXGalata",
+      videoUrl: "https://www.youtube.com/shorts/nplgM-D8-_w",
+    },
+
     // Dr. Safa Manav (3)
   ];
 
@@ -314,6 +371,12 @@ export default function App() {
 
   const saglikturizm = [
     {
+      image: imgSafaManav,
+      yearInfo: "2025 • Plastik Cerrah Tanıtımı",
+      title: "Dr. Safa Manav",
+      videoUrl: "https://www.youtube.com/watch?v=EOB-NHk6JQ0",
+    },
+    {
       image: imgGiray1,
       yearInfo: "2024 • Sağlık Turizmi",
       title: "Dr. Giray Genç",
@@ -336,6 +399,13 @@ export default function App() {
       yearInfo: "2024 • Sağlık Turizmi",
       title: "Dr. Safa Manav",
       videoUrl: "https://www.youtube.com/shorts/bSk8dwEoFzU",
+    },
+
+    {
+      image: imgAlper1,
+      yearInfo: "2024 • Sağlık Turizmi",
+      title: "Dr. Alper Burak Uslu",
+      videoUrl: "https://www.youtube.com/shorts/Y3pS9NMTlP0",
     },
   ];
 

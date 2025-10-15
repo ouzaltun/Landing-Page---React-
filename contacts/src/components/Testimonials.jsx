@@ -7,6 +7,8 @@ import elvanImage from "../assets/Produksiyon/Müşteri Yorumları/elvan bayrakt
 import kemalImage from "../assets/Produksiyon/Müşteri Yorumları/kemalbasar.jpg";
 import merveImage from "../assets/Produksiyon/Müşteri Yorumları/merve yıldırım.jpg";
 import utkuImage from "../assets/Produksiyon/Müşteri Yorumları/utkuerdemozer.jpg";
+import utkuSafa from "../assets/Produksiyon/Müşteri Yorumları/safa.jpg";
+import utkuSonay from "../assets/Produksiyon/Müşteri Yorumları/sonay.jpg";
 
 // Yorum verileri
 const testimonialsData = [
@@ -49,6 +51,22 @@ const testimonialsData = [
     quote:
       "Hastalarımı bilgilendirmek amacıyla hazırladığımız video serisi projesinde Dijital Odak ile çalıştık. Tıbbi konuları, herkesin anlayabileceği sade ve profesyonel bir dille aktarmamızı sağladılar. Harika bir iş çıkardılar.",
     image: utkuImage,
+  },
+  {
+    id: 6,
+    name: "Trendlife Kurucusu - Sonay Hanım",
+    title: "Güzellik ve Sağlıklı Yaşam",
+    quote:
+      "Dijital Odak ekibiyle çalışmaya başladığımızdan beri sosyal medya hesaplarımız bambaşka bir enerji kazandı. Hem çekimlerdeki profesyonellikleri hem de içerik fikirlerindeki yaratıcılıklarıyla markamızı en iyi şekilde yansıtıyorlar. Güzellik ve sağlıklı yaşam alanında bizi en doğal, en kaliteli haliyle yansıtan bir ekip bulmak kolay değil, iyi ki yollarımız kesişti.",
+    image: utkuSonay,
+  },
+  {
+    id: 7,
+    name: "Op. Dr. Safa Manav",
+    title: "Plastik, Rekonstrüktif ve Estetik Cerrahi",
+    quote:
+      "Hızlı geri dönüşleri ve kolay erişilebilirlikleri ile plastik cerrahi kliniğimizde bize her türlü profesyonel destek verdikleri için kendilerine çok teşekkür ediyorum 🙂",
+    image: utkuSafa,
   },
 ];
 
