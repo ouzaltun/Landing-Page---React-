@@ -63,7 +63,7 @@ export default function Masonry({
   colorShiftOnHover = false,
 }) {
   // Desktop (≥1024px): 3 kolon, Mobile/Tablet (<1024px): 4 kolon
-  const columns = useMedia(["(min-width:1024px)"], [3], 4);
+  const columns = useMedia(["(min-width:1024px)"], [3], 3);
 
   const [containerRef, { width, height: stageH }] = useMeasure();
   const [ratios, setRatios] = useState({});
