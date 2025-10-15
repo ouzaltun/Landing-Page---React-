@@ -77,7 +77,7 @@ import imgPwc2 from "../src/assets/Produksiyon/PortfolyoKapaklari/etkinlik-cekim
 
 // Sosyal Medya İçerikleri — Imports
 import imgPerwoll from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/merveperwoll.jpg";
-import imgSasaliAtasehir from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/kemalbasar.jpg";
+import imgSasaliAtasehir from "../src/assets/Produksiyon/PortfolyoKapaklari/Kurumsal Tanıtım Filmleri/sasaalı.jpg";
 import imgSara from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/profsaracoglu.jpg";
 import imgTrendlife from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/sonaytrendlife.jpg";
 import imgCaddeMarka from "../src/assets/Produksiyon/PortfolyoKapaklari/Sosyal Medya İçerikleri/caddemarka.jpg";
