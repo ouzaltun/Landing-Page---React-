@@ -266,9 +266,13 @@ const SocialMediaCarousel = ({
       window.open(url, "_blank", "noopener,noreferrer");
       return;
     }
+    stopAutoplay();
     setActiveVideo(url);
   };
-  const closeVideo = () => setActiveVideo(null);
+  const closeVideo = () => {
+    setActiveVideo(null);
+    startAutoplay();
+  };
 
   // Player hazır olunca izinler ve ses
   const onPlayerReady = (event) => {
@@ -332,7 +336,7 @@ const SocialMediaCarousel = ({
         className="relative w-full h-screen flex items-center justify-center"
         style={{ perspective: "1200px" }}
       >
-        {/* Sol / Sağ Butonlar (GÖRSELDEKİ GİBİ GÜNCELLENDİ) */}
+        {/* Sol / Sağ Butonlar */}
         <button
           onClick={() => {
             goToPrevious();
@@ -340,10 +344,8 @@ const SocialMediaCarousel = ({
           }}
           disabled={!loop && currentIndex === 0}
           aria-label="Önceki slayt"
-          // DEĞİŞİKLİK: Tailwind sınıfları güncellendi.
           className="absolute left-8 z-30 !rounded-full !md:p-[1.2em] !p-[0.8em] !bg-[#F54400] backdrop-blur-sm border !border-[#ffffff69] cursor-pointer transition-all duration-250 hover:border-white/60 disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          {/* DEĞİŞİKLİK: Ok rengi beyaza çevrildi. */}
           <ChevronLeft size={24} color="#FFFFFF" />
         </button>
         <button
@@ -353,10 +355,8 @@ const SocialMediaCarousel = ({
           }}
           disabled={!loop && currentIndex === items.length - 1}
           aria-label="Sonraki slayt"
-          // DEĞİŞİKLİK: Tailwind sınıfları güncellendi.
           className="absolute right-8 z-30 !rounded-full !md:p-[1.2em] !p-[0.8em] !bg-[#F54400] backdrop-blur-sm border !border-[#ffffff69] cursor-pointer transition-all duration-250 hover:border-white/60 disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          {/* DEĞİŞİKLİK: Ok rengi beyaza çevrildi. */}
           <ChevronRight size={24} color="#FFFFFF" />
         </button>
 
@@ -433,9 +433,10 @@ const SocialMediaCarousel = ({
           <div className="relative w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
             <button
               onClick={closeVideo}
-              className="absolute z-10 top-[20px] right-3 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white"
+              className="absolute z-10 top-4 right-4 p-3 !border-[#ffffff69] rounded-full bg-white/20 hover:bg-white/30 text-white transition-all"
+              aria-label="Videoyu kapat"
             >
-              <X size={24} />
+              <X size={24} strokeWidth={2.5} />
             </button>
 
             {(() => {
