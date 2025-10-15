@@ -127,12 +127,6 @@ export default function App() {
       videoUrl: "https://www.youtube.com/watch?v=0x4TWAog0sM",
     },
     {
-      image: imgGururKonyali,
-      yearInfo: "2025 • Marka İşbirliği",
-      title: "Gurur Aydoğan x Konyalı Saat",
-      videoUrl: "https://www.youtube.com/watch?v=f2_ZV8L9fOw",
-    },
-    {
       image: imgBaranTrendlife,
       yearInfo: "2024 • Marka İşbirliği",
       title: "Baran Demiroğlu x Trendlife",
@@ -163,12 +157,6 @@ export default function App() {
       videoUrl: "https://www.youtube.com/watch?v=rPVNnK_xuxE",
     },
     {
-      image: imgDeryaSaka2,
-      yearInfo: "2024 • Marka İşbirliği",
-      title: "Derya Cebecioğlu x Saka Su",
-      videoUrl: "https://www.youtube.com/watch?v=GSxfw-34OZE",
-    },
-    {
       image: imgGururPierre,
       yearInfo: "2025 • Marka İşbirliği",
       title: "Gurur Aydoğan x Pierre Cardin",
@@ -192,13 +180,6 @@ export default function App() {
       title: "Simge Aköz x 7 Days",
       videoUrl: "https://www.youtube.com/watch?v=sjGYvWHWHfA",
     },
-
-    {
-      image: imgMerveSaka,
-      yearInfo: "2024 • Marka İşbirliği",
-      title: "Merve Yıldırım x Saka Su",
-      videoUrl: "https://www.youtube.com/watch?v=Qc-8YQGZaho",
-    },
     {
       image: imgMerveOptimum,
       yearInfo: "2025 • Marka İşbirliği",
@@ -217,87 +198,19 @@ export default function App() {
       title: "Özkan Öztürk x Misli",
       videoUrl: "https://www.youtube.com/watch?v=y4jPkg1K4Z0",
     },
-    {
-      image: imgMujdatMisli,
-      yearInfo: "2025 • Marka İşbirliği",
-      title: "Müjdat Muratoğlu x Misli",
-      videoUrl: "https://www.youtube.com/watch?v=0o7YldScKVM",
-    },
-    {
-      image: imgGokhanMisli,
-      yearInfo: "2024 • Marka İşbirliği",
-      title: "Gökhan Abdik x Misli İş",
-      videoUrl: "https://www.youtube.com/watch?v=PKPCIHEfGj8",
-    },
   ];
 
   const items3 = [
-    {
-      image: imgGiray1,
-      yearInfo: "2024 • Sağlık Turizmi",
-      title: "Dr. Giray Genç",
-      videoUrl: "https://www.youtube.com/shorts/Bx3_l45RFMo",
-    },
-    {
-      image: imgGiray2,
-      yearInfo: "2025 • Sağlık Turizmi",
-      title: "Dr. Giray Genç",
-      videoUrl: "https://www.youtube.com/shorts/7FrGOlc1Z-Y",
-    },
-
-    // Dr. Elvan Bayraktar (4)
-    {
-      image: imgElvan1,
-      yearInfo: "2024 • Sağlık Turizmi",
-      title: "Dr. Elvan Bayraktar",
-      videoUrl: "https://www.youtube.com/shorts/HsTX5v5l_Fg",
-    },
-    {
-      image: imgElvan2,
-      yearInfo: "2024 • Sağlık Turizmi",
-      title: "Dr. Elvan Bayraktar",
-      videoUrl: "https://www.youtube.com/shorts/floWLGeEJlk",
-    },
-    {
-      image: imgElvan3,
-      yearInfo: "2025 • Sağlık Turizmi",
-      title: "Dr. Elvan Bayraktar",
-      videoUrl: "https://www.youtube.com/shorts/K4OFeD2tCXQ",
-    },
-    {
-      image: imgElvan4,
-      yearInfo: "2025 • Sağlık Turizmi",
-      title: "Dr. Elvan Bayraktar",
-      videoUrl: "https://www.youtube.com/shorts/GIUF8Oa5-SA",
-    },
-
     // Dr. Alper Burak Uslu (3)
+
     {
       image: imgAlper1,
       yearInfo: "2024 • Sağlık Turizmi",
       title: "Dr. Alper Burak Uslu",
-      videoUrl: "https://www.youtube.com/shorts/nLCjAx9p3Xo",
-    },
-    {
-      image: imgAlper2,
-      yearInfo: "2024 • Sağlık Turizmi",
-      title: "Dr. Alper Burak Uslu",
       videoUrl: "https://www.youtube.com/shorts/Y3pS9NMTlP0",
-    },
-    {
-      image: imgAlper3,
-      yearInfo: "2025 • Sağlık Turizmi",
-      title: "Dr. Alper Burak Uslu",
-      videoUrl: "https://www.youtube.com/shorts/uNKG6k-48oo",
     },
 
     // Dr. Utku Erdem Özer (1)
-    {
-      image: imgUtku,
-      yearInfo: "2024 • Sağlık Turizmi",
-      title: "Dr. Utku Erdem Özer",
-      videoUrl: "https://www.youtube.com/shorts/PWEAvhJYxP4",
-    },
 
     // Bade Natural (5)
     {
@@ -307,23 +220,18 @@ export default function App() {
       videoUrl: "https://www.youtube.com/shorts/Z4nj82de2y8",
     },
     {
-      image: imgBade2,
+      image: imgBade4, // 2. videonun kapağı 3'ün kapağı oldu
       yearInfo: "2024 • Ürün Çekimi",
       title: "Bade Natural",
       videoUrl: "https://www.youtube.com/shorts/hhPEl5FE9x0",
     },
     {
-      image: imgBade4,
+      image: imgBade, // 3. videonun kapağı eski 4'ün kapağı oldu
       yearInfo: "2025 • Ürün Çekimi",
       title: "Bade Natural",
       videoUrl: "https://www.youtube.com/shorts/jtjm0UopDb4",
     },
-    {
-      image: imgBade,
-      yearInfo: "2025 • Ürün Çekimi",
-      title: "Bade Natural",
-      videoUrl: "https://www.youtube.com/shorts/leOxYmk-Eks",
-    },
+    // 4. video kaldırıldı
     {
       image: imgBade2,
       yearInfo: "2025 • Ürün Çekimi",
@@ -333,25 +241,14 @@ export default function App() {
 
     // Tiyatro Keyfi (2)
     {
-      image: imgTiyatro1,
+      image: imgTiyatro2,
       yearInfo: "2024 • Kemal Başar",
       title: "Tiyatro Keyfi",
       videoUrl: "https://www.youtube.com/shorts/j_ULUB93fnM",
     },
-    {
-      image: imgTiyatro2,
-      yearInfo: "2025 • Kemal Başar",
-      title: "Tiyatro Keyfi",
-      videoUrl: "https://www.youtube.com/shorts/TK_t-CU-v3M",
-    },
 
     // Villages (2)
-    {
-      image: imgVillages,
-      yearInfo: "2024 • Gayrimenkul",
-      title: "Villages",
-      videoUrl: "https://www.youtube.com/shorts/wG7jjRc981o",
-    },
+
     {
       image: imgVillages2,
       yearInfo: "2025 • Gayrimenkul",
@@ -368,24 +265,6 @@ export default function App() {
     },
 
     // Dr. Safa Manav (3)
-    {
-      image: imgSafa1,
-      yearInfo: "2024 • Sağlık Turizmi",
-      title: "Dr. Safa Manav",
-      videoUrl: "https://www.youtube.com/shorts/bSk8dwEoFzU",
-    },
-    {
-      image: imgSafa2,
-      yearInfo: "2025 • Sağlık Turizmi",
-      title: "Dr. Safa Manav",
-      videoUrl: "https://www.youtube.com/shorts/1tAyFUR-OAc",
-    },
-    {
-      image: imgSafa3,
-      yearInfo: "2025 • Sağlık Turizmi",
-      title: "Dr. Safa Manav",
-      videoUrl: "https://www.youtube.com/shorts/JCgMoYkeHRk",
-    },
   ];
 
   const itemsEvent = [
@@ -430,6 +309,33 @@ export default function App() {
       yearInfo: "2025 • Yılbaşı Etkinliği",
       title: "PwC",
       videoUrl: "https://www.youtube.com/watch?v=qkttB8sh7hA",
+    },
+  ];
+
+  const saglikturizm = [
+    {
+      image: imgGiray1,
+      yearInfo: "2024 • Sağlık Turizmi",
+      title: "Dr. Giray Genç",
+      videoUrl: "https://www.youtube.com/shorts/Bx3_l45RFMo",
+    },
+    {
+      image: imgElvan4,
+      yearInfo: "2025 • Sağlık Turizmi",
+      title: "Dr. Elvan Bayraktar",
+      videoUrl: "https://www.youtube.com/shorts/K4OFeD2tCXQ",
+    },
+    {
+      image: imgUtku,
+      yearInfo: "2024 • Sağlık Turizmi",
+      title: "Dr. Utku Erdem Özer",
+      videoUrl: "https://www.youtube.com/shorts/PWEAvhJYxP4",
+    },
+    {
+      image: imgSafa1,
+      yearInfo: "2024 • Sağlık Turizmi",
+      title: "Dr. Safa Manav",
+      videoUrl: "https://www.youtube.com/shorts/bSk8dwEoFzU",
     },
   ];
 
@@ -491,7 +397,15 @@ export default function App() {
         autoplay={true}
         autoplayInterval={5000}
       />
-
+      <Divider className="my-4" />
+      <SocialMediaCarousel
+        items={saglikturizm}
+        initialIndex={0}
+        loop={true}
+        headerTitle="Sağlık Turizmi"
+        autoplay={true}
+        autoplayInterval={6000}
+      />
       <PortfolioSection />
       <Testimonials />
       <ProductionProcess />
