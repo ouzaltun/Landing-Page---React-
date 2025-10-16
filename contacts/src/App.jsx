@@ -111,12 +111,6 @@ export default function App() {
       title: "Fahri Güneş",
       videoUrl: "https://www.youtube.com/watch?v=Ja-Y6VAZv44",
     },
-    {
-      image: imgSaasali,
-      yearInfo: "2024 • Şaşaalı Ataşehir Eğlencesi",
-      title: "Şaşaalı",
-      videoUrl: "https://www.youtube.com/shorts/f5nGj3T26Zs",
-    },
 
     {
       image: imgMakss,
