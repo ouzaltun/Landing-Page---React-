@@ -210,7 +210,7 @@ export default function App() {
   const items3 = [
     // Bade Natural (5)
     {
-      image: imgBade1,
+      image: imgBade2,
       yearInfo: "2024 • Ürün Çekimi",
       title: "Bade Natural",
       videoUrl: "https://www.youtube.com/shorts/Z4nj82de2y8",
@@ -229,7 +229,7 @@ export default function App() {
     },
     // 4. video kaldırıldı
     {
-      image: imgBade2,
+      image: imgBade1,
       yearInfo: "2025 • Ürün Çekimi",
       title: "Bade Natural",
       videoUrl: "https://www.youtube.com/shorts/KDXv5V6h96o",
